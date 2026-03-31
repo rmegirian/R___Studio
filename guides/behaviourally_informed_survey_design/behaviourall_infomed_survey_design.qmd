@@ -1,7 +1,7 @@
 ---
 title: "Behaviourally Informed Survey Design"
 author: "Rose Megirian"
-categories: [Research Instrument Design, Surveys, Data Quality]
+categories: [Research Instrument Design, Surveys, Data Quality, Behavioural Science]
 description: ""
 bibliography: references.bib
 image: plot.png

@@ -1,7 +1,7 @@
 ---
-title: "Customising and Distributing The AAGI Collaborator Survey"
+title: "Customising and Distributing The Collaborator Survey"
 author: "Rose Megirian"
-categories: [Service and Support, AAGI Impact Survey]
+categories: [Research Instrument Design, Surveys, Behavioural Science]
 description: "Step-by-step guide to using the `create_survey_url()` function to correctly customise your survey links for distribution."
 bibliography: references.bib
 image: plot.png
