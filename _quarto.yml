@@ -1,0 +1,31 @@
+project:
+  type: website
+  output-dir: docs
+
+execute:
+  freeze: auto
+
+website:
+  title: "R___Studio"
+  draft-mode: gone
+  navbar:
+    # logo: "pages/visual_assets/logos/AAGI_logo_leaf.png"
+    # title: "R(ose)Studio"
+    # style: "docked"
+    search: true
+    collapse-below: lg
+    # collapse-level: 1
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Work"
+        href: guides/index.qmd
+
+format:
+  html:
+    theme:
+        light: [flatly, scss/light.scss]
+    css: scss/styles.css
+    toc: true
+
+editor: visual
