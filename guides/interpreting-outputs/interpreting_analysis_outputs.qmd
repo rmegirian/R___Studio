@@ -2,7 +2,7 @@
 title: "Interpreting Analysis Outputs: Descriptive Plots"
 author: "Rose Megirian"
 categories: [Data Analysis]
-# description: ""
+description: "A guide to reading and interpreting common descriptive plots, including histograms, boxplots, and scatter plots."
 bibliography: references.bib
 image: plot.png
 format: 
