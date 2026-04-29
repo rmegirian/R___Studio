@@ -382,7 +382,6 @@ eda_boxplot_groups <- ggplot(box_data, aes(x = group, y = value, fill = group)) 
          axis.text = element_text(size = 25)
     )
 ```
-#scatter plots
 
 ```{r}
 #| label: data-scatter
@@ -408,7 +407,7 @@ group2_data <- data.frame(x = rnorm(50, mean = 20, sd = 5),
 two_groups_data <- rbind(data.frame(Group = 'Group 1', group1_data),
                           data.frame(Group = 'Group 2', group2_data))
 ```
-## examples
+
 ```{r}
 #| label: scatter-example-plots
 #| echo: false
