@@ -2,4 +2,4 @@
 title: "Home"
 ---
 
-A collection of my projects, guides, and ideas at the intersection of behavioural science, design, research, coding and data analytics.
+A collection of projects, guides, and ideas at the intersection of behavioural science, design, research, coding and data analytics.
