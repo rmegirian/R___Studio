@@ -467,9 +467,7 @@ scale_colour_manual(values = c("#648fd2", "#ec8525")) +
   annotate("text", x = 9, y = 18, label = "Group 2", size = 20/.pt)
 
 ```
-Statistical outputs can be difficult to interpret without a clear understanding of what they represent and why particular methods are used. This guide walks through some common outputs you are likely to encounter, providing the technical grounding needed to combine analytical results with your own contextual and domain expertise to draw sound, evidence-based conclusions.
 
-# Descriptive Plots
 ```{r}
 #| label: header-plotsandfigures
 #| include: true
@@ -872,6 +870,7 @@ eda_scatterplot_curved
 :::
 
 ### Reading scatter plots
+\
 
 ```{r}
 #| label: fig-scatter-groups
