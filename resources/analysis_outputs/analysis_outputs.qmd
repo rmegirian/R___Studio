@@ -1,0 +1,6 @@
+---
+title: "analysis_outputs"
+format: html
+---
+
+Statistical outputs can be difficult to interpret without a clear understanding of what they represent and why particular methods are used. This guide walks through some common outputs you are likely to encounter, providing the technical grounding needed to combine analytical results with your own contextual and domain expertise to draw sound, evidence-based conclusions.

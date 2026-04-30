@@ -1,0 +1,74 @@
+---
+title: "Behaviourally Informed Survey Design"
+author: "Rose Megirian"
+categories: [Research Instrument Design, Surveys, Data Quality, Behavioural Science]
+description: ""
+bibliography: references.bib
+image: images/plot.png
+---
+
+```{r}
+#| echo: false
+#| include: false
+#| label: load_libraries
+#| eval: false
+
+install.packages("bibtex")
+library(bibtex)
+```
+
+```{r}
+#| label: cover-image
+#| include: true
+#| echo: false
+#| eval: false
+
+# load the library
+# library(forcats)
+library(ggplot2)
+library(dplyr)
+# library(tidyverse)
+
+# Dataset 1: one value per group
+data <- data.frame(
+  name=c("north","south","south-east","north-west","south-west","north-east","west","east"),
+  val=sample(seq(1,10), 8 )
+)
+#%>%
+  # filter(name !='south'&
+  #          name !='west'&
+  #          name != "south-west"&
+  #          name != "north-east")
+
+data %>%
+  arrange(val) %>%
+  mutate(name = factor(name, levels=c("north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west"))) %>% 
+  ggplot( aes(x=name, y=val)) +
+    geom_segment( aes(xend=name, yend=0, 
+                      linewidth=10
+                      )) +
+    geom_point( size=90, 
+                #color="#E8D6EB"
+                color='#B9A135'
+                ) +
+    theme(
+    legend.position = "none",
+    axis.title = element_blank(), 
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid = element_blank(),
+    panel.background = element_blank(),
+    plot.background = element_rect(
+      #fill="#B9A135",
+      fill='#E8D6Eb',
+      #color = "#B9A135"
+      color='#E8D6EB'
+      )
+    )+
+  scale_y_continuous(expand = expansion(add=c(2,3)))
+  
+
+ggsave("plot.png", path = "images", width = 2400, height = 1350, units = "px", dpi = 72)
+```
+
+Thanks for your interest. this document is in progress and will be published soon :)

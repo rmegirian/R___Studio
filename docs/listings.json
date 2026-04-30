@@ -3,8 +3,16 @@
     "listing": "/guides/index.html",
     "items": [
       "/guides/behaviourally_informed_survey_design/behaviourall_infomed_survey_design.html",
-      "/guides/interpreting-outputs/interpreting_analysis_outputs.html",
-      "/guides/survey_link_generation/link_generation_guide.html"
+      "/guides/descriptive_and_exploratory_outputs/descriptive_and_exploratory_outputs.html",
+      "/guides/survey_link_generation/survey_link_generation.html"
+    ]
+  },
+  {
+    "listing": "/blog/index.html",
+    "items": [
+      "/blog/behaviourally_informed_survey_design/behaviourall_infomed_survey_design.html",
+      "/blog/descriptive_and_exploratory_outputs/descriptive_and_exploratory_outputs.html",
+      "/blog/survey_link_generation/survey_link_generation.html"
     ]
   }
 ]

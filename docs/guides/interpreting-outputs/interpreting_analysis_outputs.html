@@ -9,7 +9,7 @@
 <meta name="author" content="Rose Megirian">
 <meta name="description" content="A guide to reading and interpreting common descriptive plots, including histograms, boxplots, and scatter plots.">
 
-<title>Interpreting Analysis Outputs: Descriptive Plots – R___Studio</title>
+<title>Descriptive and Exploratory Outputs: Plots and Summaries. – R___Studio</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -167,7 +167,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#sec-histograms" id="toc-sec-histograms" class="nav-link active" data-scroll-target="#sec-histograms">Histograms</a>
+  <li><a href="#sec-plotsandfigures" id="toc-sec-plotsandfigures" class="nav-link active" data-scroll-target="#sec-plotsandfigures">Plots and Figures</a>
+  <ul class="collapse">
+  <li><a href="#sec-histograms" id="toc-sec-histograms" class="nav-link" data-scroll-target="#sec-histograms">Histograms</a>
   <ul class="collapse">
   <li><a href="#reading-histograms" id="toc-reading-histograms" class="nav-link" data-scroll-target="#reading-histograms">Reading histograms</a></li>
   </ul></li>
@@ -180,6 +182,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#reading-scatter-plots" id="toc-reading-scatter-plots" class="nav-link" data-scroll-target="#reading-scatter-plots">Reading scatter plots</a></li>
   </ul></li>
+  <li><a href="#numerical-summaries" id="toc-numerical-summaries" class="nav-link" data-scroll-target="#numerical-summaries">Numerical Summaries</a>
+  <ul class="collapse">
+  <li><a href="#means" id="toc-means" class="nav-link" data-scroll-target="#means">Means</a></li>
+  <li><a href="#standard-deviations" id="toc-standard-deviations" class="nav-link" data-scroll-target="#standard-deviations">Standard Deviations</a></li>
+  <li><a href="#frequency-tables" id="toc-frequency-tables" class="nav-link" data-scroll-target="#frequency-tables">Frequency Tables</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -188,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Interpreting Analysis Outputs: Descriptive Plots</h1>
+<h1 class="title">Descriptive and Exploratory Outputs: Plots and Summaries.</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Data Analysis</div>
   </div>
@@ -247,23 +256,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<!-- <a href="Interpreting_Descriptive_Plots.pdf" download class="btn btn-primary"> -->
+<!--   Download PDF -->
+<!-- </a> -->
+<p>Descriptive and exploratory analysis summarises and describes the characteristics of a dataset, providing insight into distributions, central tendency, spread, and relationships between variables. It serves two closely related purposes: as a standalone way of characterising and communicating what the data shows, and as an essential first step before formal modelling or hypothesis testing. Used in this exploratory capacity, descriptive analysis helps reveal the shape and structure of your data, identify potential issues, and inform decisions about how best to proceed with formal analysis.</p>
+<p>This guide covers the most common outputs from descriptive and exploratory analysis that you are likely to encounter, explaining what they represent, what different patterns indicate, and what types of data each is appropriate for. It is organised into two sections: plots and figures, which covers common visualisations used to explore and describe data, and numerical summaries, which covers the key statistics used to characterise and communicate the properties of a dataset.</p>
+<section id="sec-plotsandfigures" class="level1">
+<h1>Plots and Figures</h1>
 <p>Visualisations are one of the most powerful tools in data analysis, making patterns, distributions, and relationships visible in ways that raw numbers alone often cannot. Plots like histograms, boxplots, and scatter plots are particularly valuable during exploratory data analysis, helping to reveal the shape and spread of data, identify outliers, and assess relationships between variables. This guide covers the most common descriptive plot types you are likely to encounter, explaining what they represent, what different patterns indicate, and what types of data each is appropriate for.</p>
 <section id="sec-histograms" class="level2">
 <h2 class="anchored" data-anchor-id="sec-histograms">Histograms</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="504" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 503;"><span id="cb1-504"><a href="#cb1-504" aria-hidden="true" tabindex="-1"></a>viewof dataset <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
-<span id="cb1-505"><a href="#cb1-505" aria-hidden="true" tabindex="-1"></a>  [</span>
-<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Normal Distribution"</span><span class="op">,</span> <span class="st">"Skewed Distribution"</span><span class="op">,</span> <span class="st">"Bimodal Distribution"</span><span class="op">,</span></span>
-<span id="cb1-507"><a href="#cb1-507" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Uniform Distribution"</span><span class="op">,</span> <span class="st">"Exponential Distribution"</span></span>
-<span id="cb1-508"><a href="#cb1-508" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
-<span id="cb1-509"><a href="#cb1-509" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">label</span><span class="op">:</span> <span class="st">"Distribution"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"Normal Distribution"</span>}</span>
-<span id="cb1-510"><a href="#cb1-510" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-511"><a href="#cb1-511" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-512"><a href="#cb1-512" aria-hidden="true" tabindex="-1"></a>viewof bin_width <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> {</span>
-<span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Bin width"</span><span class="op">,</span></span>
-<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
-<span id="cb1-515"><a href="#cb1-515" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">6</span></span>
-<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="510" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 509;"><span id="cb1-510"><a href="#cb1-510" aria-hidden="true" tabindex="-1"></a>viewof dataset <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
+<span id="cb1-511"><a href="#cb1-511" aria-hidden="true" tabindex="-1"></a>  [</span>
+<span id="cb1-512"><a href="#cb1-512" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Normal Distribution"</span><span class="op">,</span> <span class="st">"Skewed Distribution"</span><span class="op">,</span> <span class="st">"Bimodal Distribution"</span><span class="op">,</span></span>
+<span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Uniform Distribution"</span><span class="op">,</span> <span class="st">"Exponential Distribution"</span></span>
+<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb1-515"><a href="#cb1-515" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">label</span><span class="op">:</span> <span class="st">"Distribution"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"Normal Distribution"</span>}</span>
+<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-517"><a href="#cb1-517" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-518"><a href="#cb1-518" aria-hidden="true" tabindex="-1"></a>viewof bin_width <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> {</span>
+<span id="cb1-519"><a href="#cb1-519" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Bin width"</span><span class="op">,</span></span>
+<span id="cb1-520"><a href="#cb1-520" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb1-521"><a href="#cb1-521" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">6</span></span>
+<span id="cb1-522"><a href="#cb1-522" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -280,7 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="520" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 519;"><span id="cb2-520"><a href="#cb2-520" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div style="margin-top: 2em;"&gt;&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="526" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 525;"><span id="cb2-526"><a href="#cb2-526" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div style="margin-top: 2em;"&gt;&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-2" data-nodetype="expression">
 
@@ -288,59 +304,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="528" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 527;"><span id="cb3-528"><a href="#cb3-528" aria-hidden="true" tabindex="-1"></a>all_data <span class="op">=</span> <span class="fu">transpose</span>(hist_data)</span>
-<span id="cb3-529"><a href="#cb3-529" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-530"><a href="#cb3-530" aria-hidden="true" tabindex="-1"></a>filtered <span class="op">=</span> all_data<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">dataset</span> <span class="op">===</span> dataset)</span>
-<span id="cb3-531"><a href="#cb3-531" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-532"><a href="#cb3-532" aria-hidden="true" tabindex="-1"></a>annotation <span class="op">=</span> ({</span>
-<span id="cb3-533"><a href="#cb3-533" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Normal Distribution"</span><span class="op">:</span> <span class="vs">`Values cluster symmetrically around a central point. </span></span>
-<span id="cb3-534"><a href="#cb3-534" aria-hidden="true" tabindex="-1"></a><span class="vs">    This bell-shaped curve is the most commonly assumed distribution in statistical </span></span>
-<span id="cb3-535"><a href="#cb3-535" aria-hidden="true" tabindex="-1"></a><span class="vs">    methods. Try adjusting bin width to see how it affects the apparent shape.`</span><span class="op">,</span></span>
-<span id="cb3-536"><a href="#cb3-536" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-537"><a href="#cb3-537" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Skewed Distribution"</span><span class="op">:</span> <span class="vs">`This distribution has a long tail to the right, meaning most </span></span>
-<span id="cb3-538"><a href="#cb3-538" aria-hidden="true" tabindex="-1"></a><span class="vs">    values are low but a few are very high. This is called right skew, or positive skew. </span></span>
-<span id="cb3-539"><a href="#cb3-539" aria-hidden="true" tabindex="-1"></a><span class="vs">    Skewed data can violate the normality assumptions of some statistical methods.`</span><span class="op">,</span></span>
-<span id="cb3-540"><a href="#cb3-540" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-541"><a href="#cb3-541" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Bimodal Distribution"</span><span class="op">:</span> <span class="vs">`Two distinct peaks suggest two subgroups within the data. </span></span>
-<span id="cb3-542"><a href="#cb3-542" aria-hidden="true" tabindex="-1"></a><span class="vs">    This is called a bimodal distribution. Seeing two humps in a histogram is often </span></span>
-<span id="cb3-543"><a href="#cb3-543" aria-hidden="true" tabindex="-1"></a><span class="vs">    a signal to investigate whether the data should be analysed as separate groups.`</span><span class="op">,</span></span>
-<span id="cb3-544"><a href="#cb3-544" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-545"><a href="#cb3-545" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Uniform Distribution"</span><span class="op">:</span> <span class="vs">`Values are spread roughly evenly across the range with no </span></span>
-<span id="cb3-546"><a href="#cb3-546" aria-hidden="true" tabindex="-1"></a><span class="vs">    clear peak. This uniform distribution is relatively rare in practice but useful </span></span>
-<span id="cb3-547"><a href="#cb3-547" aria-hidden="true" tabindex="-1"></a><span class="vs">    for understanding how histograms represent shape.`</span><span class="op">,</span></span>
-<span id="cb3-548"><a href="#cb3-548" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-549"><a href="#cb3-549" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Exponential Distribution"</span><span class="op">:</span> <span class="vs">`A sharp peak near zero with a long right tail. Common </span></span>
-<span id="cb3-550"><a href="#cb3-550" aria-hidden="true" tabindex="-1"></a><span class="vs">    in data representing waiting times or survival times. Heavily skewed data like </span></span>
-<span id="cb3-551"><a href="#cb3-551" aria-hidden="true" tabindex="-1"></a><span class="vs">    this often benefits from a log transformation before analysis.`</span></span>
-<span id="cb3-552"><a href="#cb3-552" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-553"><a href="#cb3-553" aria-hidden="true" tabindex="-1"></a>})[dataset] <span class="op">||</span> <span class="st">""</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="534" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 533;"><span id="cb3-534"><a href="#cb3-534" aria-hidden="true" tabindex="-1"></a>all_data <span class="op">=</span> <span class="fu">transpose</span>(hist_data)</span>
+<span id="cb3-535"><a href="#cb3-535" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-536"><a href="#cb3-536" aria-hidden="true" tabindex="-1"></a>filtered <span class="op">=</span> all_data<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">dataset</span> <span class="op">===</span> dataset)</span>
+<span id="cb3-537"><a href="#cb3-537" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-538"><a href="#cb3-538" aria-hidden="true" tabindex="-1"></a>annotation <span class="op">=</span> ({</span>
+<span id="cb3-539"><a href="#cb3-539" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Normal Distribution"</span><span class="op">:</span> <span class="vs">`Values cluster symmetrically around a central point. </span></span>
+<span id="cb3-540"><a href="#cb3-540" aria-hidden="true" tabindex="-1"></a><span class="vs">    This bell-shaped curve is the most commonly assumed distribution in statistical </span></span>
+<span id="cb3-541"><a href="#cb3-541" aria-hidden="true" tabindex="-1"></a><span class="vs">    methods. Try adjusting bin width to see how it affects the apparent shape.`</span><span class="op">,</span></span>
+<span id="cb3-542"><a href="#cb3-542" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-543"><a href="#cb3-543" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Skewed Distribution"</span><span class="op">:</span> <span class="vs">`This distribution has a long tail to the right, meaning most </span></span>
+<span id="cb3-544"><a href="#cb3-544" aria-hidden="true" tabindex="-1"></a><span class="vs">    values are low but a few are very high. This is called right skew, or positive skew. </span></span>
+<span id="cb3-545"><a href="#cb3-545" aria-hidden="true" tabindex="-1"></a><span class="vs">    Skewed data can violate the normality assumptions of some statistical methods.`</span><span class="op">,</span></span>
+<span id="cb3-546"><a href="#cb3-546" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-547"><a href="#cb3-547" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Bimodal Distribution"</span><span class="op">:</span> <span class="vs">`Two distinct peaks suggest two subgroups within the data. </span></span>
+<span id="cb3-548"><a href="#cb3-548" aria-hidden="true" tabindex="-1"></a><span class="vs">    This is called a bimodal distribution. Seeing two humps in a histogram is often </span></span>
+<span id="cb3-549"><a href="#cb3-549" aria-hidden="true" tabindex="-1"></a><span class="vs">    a signal to investigate whether the data should be analysed as separate groups.`</span><span class="op">,</span></span>
+<span id="cb3-550"><a href="#cb3-550" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-551"><a href="#cb3-551" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Uniform Distribution"</span><span class="op">:</span> <span class="vs">`Values are spread roughly evenly across the range with no </span></span>
+<span id="cb3-552"><a href="#cb3-552" aria-hidden="true" tabindex="-1"></a><span class="vs">    clear peak. This uniform distribution is relatively rare in practice but useful </span></span>
+<span id="cb3-553"><a href="#cb3-553" aria-hidden="true" tabindex="-1"></a><span class="vs">    for understanding how histograms represent shape.`</span><span class="op">,</span></span>
 <span id="cb3-554"><a href="#cb3-554" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-555"><a href="#cb3-555" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb3-556"><a href="#cb3-556" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {<span class="dt">background</span><span class="op">:</span> <span class="st">"transparent"</span><span class="op">,</span> <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"inherit"</span>}<span class="op">,</span></span>
-<span id="cb3-557"><a href="#cb3-557" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span></span>
-<span id="cb3-558"><a href="#cb3-558" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Value"</span>}<span class="op">,</span></span>
-<span id="cb3-559"><a href="#cb3-559" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Frequency"</span>}<span class="op">,</span></span>
-<span id="cb3-560"><a href="#cb3-560" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb3-561"><a href="#cb3-561" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">rectY</span>(</span>
-<span id="cb3-562"><a href="#cb3-562" aria-hidden="true" tabindex="-1"></a>      filtered<span class="op">,</span></span>
-<span id="cb3-563"><a href="#cb3-563" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">binX</span>(</span>
-<span id="cb3-564"><a href="#cb3-564" aria-hidden="true" tabindex="-1"></a>        {<span class="dt">y</span><span class="op">:</span> <span class="st">"count"</span>}<span class="op">,</span></span>
-<span id="cb3-565"><a href="#cb3-565" aria-hidden="true" tabindex="-1"></a>        {</span>
-<span id="cb3-566"><a href="#cb3-566" aria-hidden="true" tabindex="-1"></a>          <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="op">+</span>d<span class="op">.</span><span class="at">value</span><span class="op">,</span></span>
-<span id="cb3-567"><a href="#cb3-567" aria-hidden="true" tabindex="-1"></a>          <span class="dt">thresholds</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">range</span>(</span>
-<span id="cb3-568"><a href="#cb3-568" aria-hidden="true" tabindex="-1"></a>            d3<span class="op">.</span><span class="fu">min</span>(filtered<span class="op">,</span> d <span class="kw">=&gt;</span> <span class="op">+</span>d<span class="op">.</span><span class="at">value</span>)<span class="op">,</span></span>
-<span id="cb3-569"><a href="#cb3-569" aria-hidden="true" tabindex="-1"></a>            d3<span class="op">.</span><span class="fu">max</span>(filtered<span class="op">,</span> d <span class="kw">=&gt;</span> <span class="op">+</span>d<span class="op">.</span><span class="at">value</span>) <span class="op">+</span> bin_width<span class="op">,</span></span>
-<span id="cb3-570"><a href="#cb3-570" aria-hidden="true" tabindex="-1"></a>            bin_width</span>
-<span id="cb3-571"><a href="#cb3-571" aria-hidden="true" tabindex="-1"></a>          )<span class="op">,</span></span>
-<span id="cb3-572"><a href="#cb3-572" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fill</span><span class="op">:</span> <span class="st">"#F2F2F2"</span><span class="op">,</span></span>
-<span id="cb3-573"><a href="#cb3-573" aria-hidden="true" tabindex="-1"></a>          <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#414042"</span><span class="op">,</span></span>
-<span id="cb3-574"><a href="#cb3-574" aria-hidden="true" tabindex="-1"></a>          <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">0.8</span></span>
-<span id="cb3-575"><a href="#cb3-575" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb3-576"><a href="#cb3-576" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb3-577"><a href="#cb3-577" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
-<span id="cb3-578"><a href="#cb3-578" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
-<span id="cb3-579"><a href="#cb3-579" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb3-580"><a href="#cb3-580" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-555"><a href="#cb3-555" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Exponential Distribution"</span><span class="op">:</span> <span class="vs">`A sharp peak near zero with a long right tail. Common </span></span>
+<span id="cb3-556"><a href="#cb3-556" aria-hidden="true" tabindex="-1"></a><span class="vs">    in data representing waiting times or survival times. Heavily skewed data like </span></span>
+<span id="cb3-557"><a href="#cb3-557" aria-hidden="true" tabindex="-1"></a><span class="vs">    this often benefits from a log transformation before analysis.`</span></span>
+<span id="cb3-558"><a href="#cb3-558" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-559"><a href="#cb3-559" aria-hidden="true" tabindex="-1"></a>})[dataset] <span class="op">||</span> <span class="st">""</span></span>
+<span id="cb3-560"><a href="#cb3-560" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-561"><a href="#cb3-561" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb3-562"><a href="#cb3-562" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {<span class="dt">background</span><span class="op">:</span> <span class="st">"transparent"</span><span class="op">,</span> <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"inherit"</span>}<span class="op">,</span></span>
+<span id="cb3-563"><a href="#cb3-563" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb3-564"><a href="#cb3-564" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Value"</span>}<span class="op">,</span></span>
+<span id="cb3-565"><a href="#cb3-565" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Frequency"</span>}<span class="op">,</span></span>
+<span id="cb3-566"><a href="#cb3-566" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb3-567"><a href="#cb3-567" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">rectY</span>(</span>
+<span id="cb3-568"><a href="#cb3-568" aria-hidden="true" tabindex="-1"></a>      filtered<span class="op">,</span></span>
+<span id="cb3-569"><a href="#cb3-569" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">binX</span>(</span>
+<span id="cb3-570"><a href="#cb3-570" aria-hidden="true" tabindex="-1"></a>        {<span class="dt">y</span><span class="op">:</span> <span class="st">"count"</span>}<span class="op">,</span></span>
+<span id="cb3-571"><a href="#cb3-571" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb3-572"><a href="#cb3-572" aria-hidden="true" tabindex="-1"></a>          <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="op">+</span>d<span class="op">.</span><span class="at">value</span><span class="op">,</span></span>
+<span id="cb3-573"><a href="#cb3-573" aria-hidden="true" tabindex="-1"></a>          <span class="dt">thresholds</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">range</span>(</span>
+<span id="cb3-574"><a href="#cb3-574" aria-hidden="true" tabindex="-1"></a>            d3<span class="op">.</span><span class="fu">min</span>(filtered<span class="op">,</span> d <span class="kw">=&gt;</span> <span class="op">+</span>d<span class="op">.</span><span class="at">value</span>)<span class="op">,</span></span>
+<span id="cb3-575"><a href="#cb3-575" aria-hidden="true" tabindex="-1"></a>            d3<span class="op">.</span><span class="fu">max</span>(filtered<span class="op">,</span> d <span class="kw">=&gt;</span> <span class="op">+</span>d<span class="op">.</span><span class="at">value</span>) <span class="op">+</span> bin_width<span class="op">,</span></span>
+<span id="cb3-576"><a href="#cb3-576" aria-hidden="true" tabindex="-1"></a>            bin_width</span>
+<span id="cb3-577"><a href="#cb3-577" aria-hidden="true" tabindex="-1"></a>          )<span class="op">,</span></span>
+<span id="cb3-578"><a href="#cb3-578" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fill</span><span class="op">:</span> <span class="st">"#F2F2F2"</span><span class="op">,</span></span>
+<span id="cb3-579"><a href="#cb3-579" aria-hidden="true" tabindex="-1"></a>          <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#414042"</span><span class="op">,</span></span>
+<span id="cb3-580"><a href="#cb3-580" aria-hidden="true" tabindex="-1"></a>          <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">0.8</span></span>
+<span id="cb3-581"><a href="#cb3-581" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb3-582"><a href="#cb3-582" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb3-583"><a href="#cb3-583" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb3-584"><a href="#cb3-584" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb3-585"><a href="#cb3-585" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb3-586"><a href="#cb3-586" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-3-1" data-nodetype="declaration">
@@ -371,10 +387,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="584" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 583;"><span id="cb4-584"><a href="#cb4-584" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div style="font-size: 0.9em; color: #555; margin-top: .5em; </span></span>
-<span id="cb4-585"><a href="#cb4-585" aria-hidden="true" tabindex="-1"></a><span class="vs">  padding: 0.75em 1em; background: #f9f9f9; border-left: 3px solid #414042;"&gt;</span></span>
-<span id="cb4-586"><a href="#cb4-586" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span><span class="sc">${</span>annotation<span class="sc">}</span></span>
-<span id="cb4-587"><a href="#cb4-587" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="590" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 589;"><span id="cb4-590"><a href="#cb4-590" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div style="font-size: 0.9em; color: #555; margin-top: .5em; </span></span>
+<span id="cb4-591"><a href="#cb4-591" aria-hidden="true" tabindex="-1"></a><span class="vs">  padding: 0.75em 1em; background: #f9f9f9; border-left: 3px solid #414042;"&gt;</span></span>
+<span id="cb4-592"><a href="#cb4-592" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span><span class="sc">${</span>annotation<span class="sc">}</span></span>
+<span id="cb4-593"><a href="#cb4-593" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-4" data-nodetype="expression">
 
@@ -467,13 +483,13 @@ Figure&nbsp;4: A boxplot provides a concise visual summary of a variable’s dis
 <p><br>
 </p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="677" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 676;"><span id="cb5-677"><a href="#cb5-677" aria-hidden="true" tabindex="-1"></a>viewof box_dataset <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
-<span id="cb5-678"><a href="#cb5-678" aria-hidden="true" tabindex="-1"></a>  [</span>
-<span id="cb5-679"><a href="#cb5-679" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Normal Distribution"</span><span class="op">,</span> <span class="st">"Skewed Distribution"</span><span class="op">,</span> <span class="st">"Bimodal Distribution"</span><span class="op">,</span></span>
-<span id="cb5-680"><a href="#cb5-680" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Uniform Distribution"</span><span class="op">,</span> <span class="st">"Exponential Distribution"</span></span>
-<span id="cb5-681"><a href="#cb5-681" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
-<span id="cb5-682"><a href="#cb5-682" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">label</span><span class="op">:</span> <span class="st">"Distribution"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"Normal Distribution"</span>}</span>
-<span id="cb5-683"><a href="#cb5-683" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="683" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 682;"><span id="cb5-683"><a href="#cb5-683" aria-hidden="true" tabindex="-1"></a>viewof box_dataset <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
+<span id="cb5-684"><a href="#cb5-684" aria-hidden="true" tabindex="-1"></a>  [</span>
+<span id="cb5-685"><a href="#cb5-685" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Normal Distribution"</span><span class="op">,</span> <span class="st">"Skewed Distribution"</span><span class="op">,</span> <span class="st">"Bimodal Distribution"</span><span class="op">,</span></span>
+<span id="cb5-686"><a href="#cb5-686" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Uniform Distribution"</span><span class="op">,</span> <span class="st">"Exponential Distribution"</span></span>
+<span id="cb5-687"><a href="#cb5-687" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb5-688"><a href="#cb5-688" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">label</span><span class="op">:</span> <span class="st">"Distribution"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">"Normal Distribution"</span>}</span>
+<span id="cb5-689"><a href="#cb5-689" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-5" data-nodetype="declaration">
 
@@ -481,7 +497,7 @@ Figure&nbsp;4: A boxplot provides a concise visual summary of a variable’s dis
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="689" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 688;"><span id="cb6-689"><a href="#cb6-689" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div style="margin-top: 2em;"&gt;&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="695" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 694;"><span id="cb6-695"><a href="#cb6-695" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div style="margin-top: 2em;"&gt;&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-6" data-nodetype="expression">
 
@@ -489,127 +505,127 @@ Figure&nbsp;4: A boxplot provides a concise visual summary of a variable’s dis
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="697" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 696;"><span id="cb7-697"><a href="#cb7-697" aria-hidden="true" tabindex="-1"></a>box_all_data <span class="op">=</span> <span class="fu">transpose</span>(box_data)</span>
-<span id="cb7-698"><a href="#cb7-698" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-699"><a href="#cb7-699" aria-hidden="true" tabindex="-1"></a>box_filtered <span class="op">=</span> box_all_data<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">dataset</span> <span class="op">===</span> box_dataset)</span>
-<span id="cb7-700"><a href="#cb7-700" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-701"><a href="#cb7-701" aria-hidden="true" tabindex="-1"></a>box_values <span class="op">=</span> box_filtered<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> <span class="op">+</span>d<span class="op">.</span><span class="at">value</span>)</span>
-<span id="cb7-702"><a href="#cb7-702" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-703"><a href="#cb7-703" aria-hidden="true" tabindex="-1"></a><span class="co">// Compute summary stats</span></span>
-<span id="cb7-704"><a href="#cb7-704" aria-hidden="true" tabindex="-1"></a>box_sorted <span class="op">=</span> [<span class="op">...</span>box_values]<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a <span class="op">-</span> b)</span>
-<span id="cb7-705"><a href="#cb7-705" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-706"><a href="#cb7-706" aria-hidden="true" tabindex="-1"></a>box_q1 <span class="op">=</span> d3<span class="op">.</span><span class="fu">quantile</span>(box_sorted<span class="op">,</span> <span class="fl">0.25</span>)</span>
-<span id="cb7-707"><a href="#cb7-707" aria-hidden="true" tabindex="-1"></a>box_q3 <span class="op">=</span> d3<span class="op">.</span><span class="fu">quantile</span>(box_sorted<span class="op">,</span> <span class="fl">0.75</span>)</span>
-<span id="cb7-708"><a href="#cb7-708" aria-hidden="true" tabindex="-1"></a>box_median <span class="op">=</span> d3<span class="op">.</span><span class="fu">quantile</span>(box_sorted<span class="op">,</span> <span class="fl">0.5</span>)</span>
-<span id="cb7-709"><a href="#cb7-709" aria-hidden="true" tabindex="-1"></a>box_iqr <span class="op">=</span> box_q3 <span class="op">-</span> box_q1</span>
-<span id="cb7-710"><a href="#cb7-710" aria-hidden="true" tabindex="-1"></a>box_lower_fence <span class="op">=</span> box_q1 <span class="op">-</span> <span class="fl">1.5</span> <span class="op">*</span> box_iqr</span>
-<span id="cb7-711"><a href="#cb7-711" aria-hidden="true" tabindex="-1"></a>box_upper_fence <span class="op">=</span> box_q3 <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> box_iqr</span>
-<span id="cb7-712"><a href="#cb7-712" aria-hidden="true" tabindex="-1"></a>box_lower_whisker <span class="op">=</span> d3<span class="op">.</span><span class="fu">min</span>(box_values<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d <span class="op">&gt;=</span> box_lower_fence))</span>
-<span id="cb7-713"><a href="#cb7-713" aria-hidden="true" tabindex="-1"></a>box_upper_whisker <span class="op">=</span> d3<span class="op">.</span><span class="fu">max</span>(box_values<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d <span class="op">&lt;=</span> box_upper_fence))</span>
-<span id="cb7-714"><a href="#cb7-714" aria-hidden="true" tabindex="-1"></a>box_outliers <span class="op">=</span> box_values<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d <span class="op">&lt;</span> box_lower_fence <span class="op">||</span> d <span class="op">&gt;</span> box_upper_fence)</span>
-<span id="cb7-715"><a href="#cb7-715" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-716"><a href="#cb7-716" aria-hidden="true" tabindex="-1"></a>box_annotation <span class="op">=</span> ({</span>
-<span id="cb7-717"><a href="#cb7-717" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Normal Distribution"</span><span class="op">:</span> <span class="vs">`The median sits centrally within the box and the whiskers </span></span>
-<span id="cb7-718"><a href="#cb7-718" aria-hidden="true" tabindex="-1"></a><span class="vs">    are roughly equal in length, indicating a roughly symmetric distribution with </span></span>
-<span id="cb7-719"><a href="#cb7-719" aria-hidden="true" tabindex="-1"></a><span class="vs">    values spread evenly around the centre. This is consistent with a normal </span></span>
-<span id="cb7-720"><a href="#cb7-720" aria-hidden="true" tabindex="-1"></a><span class="vs">    distribution. There are few or no outliers.`</span><span class="op">,</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="703" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 702;"><span id="cb7-703"><a href="#cb7-703" aria-hidden="true" tabindex="-1"></a>box_all_data <span class="op">=</span> <span class="fu">transpose</span>(box_data)</span>
+<span id="cb7-704"><a href="#cb7-704" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-705"><a href="#cb7-705" aria-hidden="true" tabindex="-1"></a>box_filtered <span class="op">=</span> box_all_data<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">dataset</span> <span class="op">===</span> box_dataset)</span>
+<span id="cb7-706"><a href="#cb7-706" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-707"><a href="#cb7-707" aria-hidden="true" tabindex="-1"></a>box_values <span class="op">=</span> box_filtered<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> <span class="op">+</span>d<span class="op">.</span><span class="at">value</span>)</span>
+<span id="cb7-708"><a href="#cb7-708" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-709"><a href="#cb7-709" aria-hidden="true" tabindex="-1"></a><span class="co">// Compute summary stats</span></span>
+<span id="cb7-710"><a href="#cb7-710" aria-hidden="true" tabindex="-1"></a>box_sorted <span class="op">=</span> [<span class="op">...</span>box_values]<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a <span class="op">-</span> b)</span>
+<span id="cb7-711"><a href="#cb7-711" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-712"><a href="#cb7-712" aria-hidden="true" tabindex="-1"></a>box_q1 <span class="op">=</span> d3<span class="op">.</span><span class="fu">quantile</span>(box_sorted<span class="op">,</span> <span class="fl">0.25</span>)</span>
+<span id="cb7-713"><a href="#cb7-713" aria-hidden="true" tabindex="-1"></a>box_q3 <span class="op">=</span> d3<span class="op">.</span><span class="fu">quantile</span>(box_sorted<span class="op">,</span> <span class="fl">0.75</span>)</span>
+<span id="cb7-714"><a href="#cb7-714" aria-hidden="true" tabindex="-1"></a>box_median <span class="op">=</span> d3<span class="op">.</span><span class="fu">quantile</span>(box_sorted<span class="op">,</span> <span class="fl">0.5</span>)</span>
+<span id="cb7-715"><a href="#cb7-715" aria-hidden="true" tabindex="-1"></a>box_iqr <span class="op">=</span> box_q3 <span class="op">-</span> box_q1</span>
+<span id="cb7-716"><a href="#cb7-716" aria-hidden="true" tabindex="-1"></a>box_lower_fence <span class="op">=</span> box_q1 <span class="op">-</span> <span class="fl">1.5</span> <span class="op">*</span> box_iqr</span>
+<span id="cb7-717"><a href="#cb7-717" aria-hidden="true" tabindex="-1"></a>box_upper_fence <span class="op">=</span> box_q3 <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> box_iqr</span>
+<span id="cb7-718"><a href="#cb7-718" aria-hidden="true" tabindex="-1"></a>box_lower_whisker <span class="op">=</span> d3<span class="op">.</span><span class="fu">min</span>(box_values<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d <span class="op">&gt;=</span> box_lower_fence))</span>
+<span id="cb7-719"><a href="#cb7-719" aria-hidden="true" tabindex="-1"></a>box_upper_whisker <span class="op">=</span> d3<span class="op">.</span><span class="fu">max</span>(box_values<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d <span class="op">&lt;=</span> box_upper_fence))</span>
+<span id="cb7-720"><a href="#cb7-720" aria-hidden="true" tabindex="-1"></a>box_outliers <span class="op">=</span> box_values<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d <span class="op">&lt;</span> box_lower_fence <span class="op">||</span> d <span class="op">&gt;</span> box_upper_fence)</span>
 <span id="cb7-721"><a href="#cb7-721" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-722"><a href="#cb7-722" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Skewed Distribution"</span><span class="op">:</span> <span class="vs">`The median is pulled toward the left of the box and the </span></span>
-<span id="cb7-723"><a href="#cb7-723" aria-hidden="true" tabindex="-1"></a><span class="vs">    right whisker is considerably longer than the left, indicating right skew. A </span></span>
-<span id="cb7-724"><a href="#cb7-724" aria-hidden="true" tabindex="-1"></a><span class="vs">    small number of very high values extend the upper whisker and appear as outliers. </span></span>
-<span id="cb7-725"><a href="#cb7-725" aria-hidden="true" tabindex="-1"></a><span class="vs">    Compare this with the histogram view — the long right tail is visible in both </span></span>
-<span id="cb7-726"><a href="#cb7-726" aria-hidden="true" tabindex="-1"></a><span class="vs">    plot types but manifests differently.`</span><span class="op">,</span></span>
+<span id="cb7-722"><a href="#cb7-722" aria-hidden="true" tabindex="-1"></a>box_annotation <span class="op">=</span> ({</span>
+<span id="cb7-723"><a href="#cb7-723" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Normal Distribution"</span><span class="op">:</span> <span class="vs">`The median sits centrally within the box and the whiskers </span></span>
+<span id="cb7-724"><a href="#cb7-724" aria-hidden="true" tabindex="-1"></a><span class="vs">    are roughly equal in length, indicating a roughly symmetric distribution with </span></span>
+<span id="cb7-725"><a href="#cb7-725" aria-hidden="true" tabindex="-1"></a><span class="vs">    values spread evenly around the centre. This is consistent with a normal </span></span>
+<span id="cb7-726"><a href="#cb7-726" aria-hidden="true" tabindex="-1"></a><span class="vs">    distribution. There are few or no outliers.`</span><span class="op">,</span></span>
 <span id="cb7-727"><a href="#cb7-727" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-728"><a href="#cb7-728" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Bimodal Distribution"</span><span class="op">:</span> <span class="vs">`A bimodal distribution is one of the harder patterns to </span></span>
-<span id="cb7-729"><a href="#cb7-729" aria-hidden="true" tabindex="-1"></a><span class="vs">    detect in a boxplot. The box and whiskers may appear relatively wide, reflecting </span></span>
-<span id="cb7-730"><a href="#cb7-730" aria-hidden="true" tabindex="-1"></a><span class="vs">    the spread between two clusters, but the two peaks are not visible the way they </span></span>
-<span id="cb7-731"><a href="#cb7-731" aria-hidden="true" tabindex="-1"></a><span class="vs">    are in a histogram. This is an important limitation of boxplots — they summarise </span></span>
-<span id="cb7-732"><a href="#cb7-732" aria-hidden="true" tabindex="-1"></a><span class="vs">    distribution shape but can obscure underlying structure. A histogram or density </span></span>
-<span id="cb7-733"><a href="#cb7-733" aria-hidden="true" tabindex="-1"></a><span class="vs">    plot is better for detecting bimodality.`</span><span class="op">,</span></span>
-<span id="cb7-734"><a href="#cb7-734" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-735"><a href="#cb7-735" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Uniform Distribution"</span><span class="op">:</span> <span class="vs">`The median sits near the centre of the box and both </span></span>
-<span id="cb7-736"><a href="#cb7-736" aria-hidden="true" tabindex="-1"></a><span class="vs">    whiskers are long and roughly equal, reflecting the even spread of values across </span></span>
-<span id="cb7-737"><a href="#cb7-737" aria-hidden="true" tabindex="-1"></a><span class="vs">    the full range. There are few outliers because no values fall unusually far from </span></span>
-<span id="cb7-738"><a href="#cb7-738" aria-hidden="true" tabindex="-1"></a><span class="vs">    the rest — everything is equally spread.`</span><span class="op">,</span></span>
-<span id="cb7-739"><a href="#cb7-739" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-740"><a href="#cb7-740" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Exponential Distribution"</span><span class="op">:</span> <span class="vs">`The median sits close to the left edge of the box and </span></span>
-<span id="cb7-741"><a href="#cb7-741" aria-hidden="true" tabindex="-1"></a><span class="vs">    the right whisker is much longer than the left, with many high-value outliers </span></span>
-<span id="cb7-742"><a href="#cb7-742" aria-hidden="true" tabindex="-1"></a><span class="vs">    visible beyond the upper whisker. This strongly right-skewed pattern is typical </span></span>
-<span id="cb7-743"><a href="#cb7-743" aria-hidden="true" tabindex="-1"></a><span class="vs">    of exponential data and is a signal that standard analytical methods assuming </span></span>
-<span id="cb7-744"><a href="#cb7-744" aria-hidden="true" tabindex="-1"></a><span class="vs">    normality may not be appropriate without transformation.`</span></span>
+<span id="cb7-728"><a href="#cb7-728" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Skewed Distribution"</span><span class="op">:</span> <span class="vs">`The median is pulled toward the left of the box and the </span></span>
+<span id="cb7-729"><a href="#cb7-729" aria-hidden="true" tabindex="-1"></a><span class="vs">    right whisker is considerably longer than the left, indicating right skew. A </span></span>
+<span id="cb7-730"><a href="#cb7-730" aria-hidden="true" tabindex="-1"></a><span class="vs">    small number of very high values extend the upper whisker and appear as outliers. </span></span>
+<span id="cb7-731"><a href="#cb7-731" aria-hidden="true" tabindex="-1"></a><span class="vs">    Compare this with the histogram view — the long right tail is visible in both </span></span>
+<span id="cb7-732"><a href="#cb7-732" aria-hidden="true" tabindex="-1"></a><span class="vs">    plot types but manifests differently.`</span><span class="op">,</span></span>
+<span id="cb7-733"><a href="#cb7-733" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-734"><a href="#cb7-734" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Bimodal Distribution"</span><span class="op">:</span> <span class="vs">`A bimodal distribution is one of the harder patterns to </span></span>
+<span id="cb7-735"><a href="#cb7-735" aria-hidden="true" tabindex="-1"></a><span class="vs">    detect in a boxplot. The box and whiskers may appear relatively wide, reflecting </span></span>
+<span id="cb7-736"><a href="#cb7-736" aria-hidden="true" tabindex="-1"></a><span class="vs">    the spread between two clusters, but the two peaks are not visible the way they </span></span>
+<span id="cb7-737"><a href="#cb7-737" aria-hidden="true" tabindex="-1"></a><span class="vs">    are in a histogram. This is an important limitation of boxplots — they summarise </span></span>
+<span id="cb7-738"><a href="#cb7-738" aria-hidden="true" tabindex="-1"></a><span class="vs">    distribution shape but can obscure underlying structure. A histogram or density </span></span>
+<span id="cb7-739"><a href="#cb7-739" aria-hidden="true" tabindex="-1"></a><span class="vs">    plot is better for detecting bimodality.`</span><span class="op">,</span></span>
+<span id="cb7-740"><a href="#cb7-740" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-741"><a href="#cb7-741" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Uniform Distribution"</span><span class="op">:</span> <span class="vs">`The median sits near the centre of the box and both </span></span>
+<span id="cb7-742"><a href="#cb7-742" aria-hidden="true" tabindex="-1"></a><span class="vs">    whiskers are long and roughly equal, reflecting the even spread of values across </span></span>
+<span id="cb7-743"><a href="#cb7-743" aria-hidden="true" tabindex="-1"></a><span class="vs">    the full range. There are few outliers because no values fall unusually far from </span></span>
+<span id="cb7-744"><a href="#cb7-744" aria-hidden="true" tabindex="-1"></a><span class="vs">    the rest — everything is equally spread.`</span><span class="op">,</span></span>
 <span id="cb7-745"><a href="#cb7-745" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-746"><a href="#cb7-746" aria-hidden="true" tabindex="-1"></a>})[box_dataset] <span class="op">||</span> <span class="st">""</span></span>
-<span id="cb7-747"><a href="#cb7-747" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-748"><a href="#cb7-748" aria-hidden="true" tabindex="-1"></a><span class="co">// Combine whisker and box data for Plot</span></span>
-<span id="cb7-749"><a href="#cb7-749" aria-hidden="true" tabindex="-1"></a>box_summary <span class="op">=</span> [{ </span>
-<span id="cb7-750"><a href="#cb7-750" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x1</span><span class="op">:</span> box_lower_whisker<span class="op">,</span> </span>
-<span id="cb7-751"><a href="#cb7-751" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x2</span><span class="op">:</span> box_upper_whisker<span class="op">,</span></span>
-<span id="cb7-752"><a href="#cb7-752" aria-hidden="true" tabindex="-1"></a>  <span class="dt">q1</span><span class="op">:</span> box_q1<span class="op">,</span></span>
-<span id="cb7-753"><a href="#cb7-753" aria-hidden="true" tabindex="-1"></a>  <span class="dt">q3</span><span class="op">:</span> box_q3<span class="op">,</span></span>
-<span id="cb7-754"><a href="#cb7-754" aria-hidden="true" tabindex="-1"></a>  <span class="dt">median</span><span class="op">:</span> box_median</span>
-<span id="cb7-755"><a href="#cb7-755" aria-hidden="true" tabindex="-1"></a>}]</span>
-<span id="cb7-756"><a href="#cb7-756" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-757"><a href="#cb7-757" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb7-758"><a href="#cb7-758" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {<span class="dt">background</span><span class="op">:</span> <span class="st">"transparent"</span><span class="op">,</span> <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"inherit"</span>}<span class="op">,</span></span>
-<span id="cb7-759"><a href="#cb7-759" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
-<span id="cb7-760"><a href="#cb7-760" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
-<span id="cb7-761"><a href="#cb7-761" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">160</span><span class="op">,</span></span>
-<span id="cb7-762"><a href="#cb7-762" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Value"</span>}<span class="op">,</span></span>
-<span id="cb7-763"><a href="#cb7-763" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">axis</span><span class="op">:</span> <span class="kw">null</span>}<span class="op">,</span></span>
-<span id="cb7-764"><a href="#cb7-764" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb7-765"><a href="#cb7-765" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Whisker line</span></span>
-<span id="cb7-766"><a href="#cb7-766" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>(box_summary<span class="op">,</span> {</span>
-<span id="cb7-767"><a href="#cb7-767" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x1</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">x1</span><span class="op">,</span></span>
-<span id="cb7-768"><a href="#cb7-768" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x2</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">x2</span><span class="op">,</span></span>
-<span id="cb7-769"><a href="#cb7-769" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb7-770"><a href="#cb7-770" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#414042"</span><span class="op">,</span></span>
-<span id="cb7-771"><a href="#cb7-771" aria-hidden="true" tabindex="-1"></a>      <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
-<span id="cb7-772"><a href="#cb7-772" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
-<span id="cb7-773"><a href="#cb7-773" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Box</span></span>
-<span id="cb7-774"><a href="#cb7-774" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">rect</span>(box_summary<span class="op">,</span> {</span>
-<span id="cb7-775"><a href="#cb7-775" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x1</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">q1</span><span class="op">,</span></span>
-<span id="cb7-776"><a href="#cb7-776" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x2</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">q3</span><span class="op">,</span></span>
-<span id="cb7-777"><a href="#cb7-777" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y1</span><span class="op">:</span> <span class="op">-</span><span class="fl">0.4</span><span class="op">,</span></span>
-<span id="cb7-778"><a href="#cb7-778" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y2</span><span class="op">:</span> <span class="fl">0.4</span><span class="op">,</span></span>
-<span id="cb7-779"><a href="#cb7-779" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fill</span><span class="op">:</span> <span class="st">"#F2F2F2"</span><span class="op">,</span></span>
-<span id="cb7-780"><a href="#cb7-780" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#414042"</span><span class="op">,</span></span>
-<span id="cb7-781"><a href="#cb7-781" aria-hidden="true" tabindex="-1"></a>      <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
-<span id="cb7-782"><a href="#cb7-782" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
-<span id="cb7-783"><a href="#cb7-783" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Median line</span></span>
-<span id="cb7-784"><a href="#cb7-784" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>(box_summary<span class="op">,</span> {</span>
-<span id="cb7-785"><a href="#cb7-785" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">median</span><span class="op">,</span></span>
-<span id="cb7-786"><a href="#cb7-786" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y1</span><span class="op">:</span> <span class="op">-</span><span class="fl">0.4</span><span class="op">,</span></span>
-<span id="cb7-787"><a href="#cb7-787" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y2</span><span class="op">:</span> <span class="fl">0.4</span><span class="op">,</span></span>
-<span id="cb7-788"><a href="#cb7-788" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#414042"</span><span class="op">,</span></span>
-<span id="cb7-789"><a href="#cb7-789" aria-hidden="true" tabindex="-1"></a>      <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span></span>
-<span id="cb7-790"><a href="#cb7-790" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
-<span id="cb7-791"><a href="#cb7-791" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Outliers</span></span>
-<span id="cb7-792"><a href="#cb7-792" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(box_outliers<span class="op">.</span><span class="fu">map</span>(v <span class="kw">=&gt;</span> ({v}))<span class="op">,</span> {</span>
-<span id="cb7-793"><a href="#cb7-793" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">v</span><span class="op">,</span></span>
-<span id="cb7-794"><a href="#cb7-794" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb7-795"><a href="#cb7-795" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fill</span><span class="op">:</span> <span class="st">"#ec8525"</span><span class="op">,</span></span>
-<span id="cb7-796"><a href="#cb7-796" aria-hidden="true" tabindex="-1"></a>      <span class="dt">r</span><span class="op">:</span> <span class="dv">3</span></span>
-<span id="cb7-797"><a href="#cb7-797" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
-<span id="cb7-798"><a href="#cb7-798" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Lower whisker (from lower whisker end to Q1)</span></span>
-<span id="cb7-799"><a href="#cb7-799" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">link</span>(box_summary<span class="op">,</span> {</span>
-<span id="cb7-800"><a href="#cb7-800" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x1</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">x1</span><span class="op">,</span></span>
-<span id="cb7-801"><a href="#cb7-801" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x2</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">q1</span><span class="op">,</span></span>
-<span id="cb7-802"><a href="#cb7-802" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y1</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb7-803"><a href="#cb7-803" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y2</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb7-804"><a href="#cb7-804" aria-hidden="true" tabindex="-1"></a>  <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#414042"</span><span class="op">,</span></span>
-<span id="cb7-805"><a href="#cb7-805" aria-hidden="true" tabindex="-1"></a>  <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
-<span id="cb7-806"><a href="#cb7-806" aria-hidden="true" tabindex="-1"></a>})<span class="op">,</span></span>
-<span id="cb7-807"><a href="#cb7-807" aria-hidden="true" tabindex="-1"></a><span class="co">// Upper whisker (from Q3 to upper whisker end)</span></span>
-<span id="cb7-808"><a href="#cb7-808" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">link</span>(box_summary<span class="op">,</span> {</span>
-<span id="cb7-809"><a href="#cb7-809" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x1</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">q3</span><span class="op">,</span></span>
-<span id="cb7-810"><a href="#cb7-810" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x2</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">x2</span><span class="op">,</span></span>
-<span id="cb7-811"><a href="#cb7-811" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y1</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb7-812"><a href="#cb7-812" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y2</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb7-813"><a href="#cb7-813" aria-hidden="true" tabindex="-1"></a>  <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#414042"</span><span class="op">,</span></span>
-<span id="cb7-814"><a href="#cb7-814" aria-hidden="true" tabindex="-1"></a>  <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
-<span id="cb7-815"><a href="#cb7-815" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb7-816"><a href="#cb7-816" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb7-817"><a href="#cb7-817" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-746"><a href="#cb7-746" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Exponential Distribution"</span><span class="op">:</span> <span class="vs">`The median sits close to the left edge of the box and </span></span>
+<span id="cb7-747"><a href="#cb7-747" aria-hidden="true" tabindex="-1"></a><span class="vs">    the right whisker is much longer than the left, with many high-value outliers </span></span>
+<span id="cb7-748"><a href="#cb7-748" aria-hidden="true" tabindex="-1"></a><span class="vs">    visible beyond the upper whisker. This strongly right-skewed pattern is typical </span></span>
+<span id="cb7-749"><a href="#cb7-749" aria-hidden="true" tabindex="-1"></a><span class="vs">    of exponential data and is a signal that standard analytical methods assuming </span></span>
+<span id="cb7-750"><a href="#cb7-750" aria-hidden="true" tabindex="-1"></a><span class="vs">    normality may not be appropriate without transformation.`</span></span>
+<span id="cb7-751"><a href="#cb7-751" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-752"><a href="#cb7-752" aria-hidden="true" tabindex="-1"></a>})[box_dataset] <span class="op">||</span> <span class="st">""</span></span>
+<span id="cb7-753"><a href="#cb7-753" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-754"><a href="#cb7-754" aria-hidden="true" tabindex="-1"></a><span class="co">// Combine whisker and box data for Plot</span></span>
+<span id="cb7-755"><a href="#cb7-755" aria-hidden="true" tabindex="-1"></a>box_summary <span class="op">=</span> [{ </span>
+<span id="cb7-756"><a href="#cb7-756" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x1</span><span class="op">:</span> box_lower_whisker<span class="op">,</span> </span>
+<span id="cb7-757"><a href="#cb7-757" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x2</span><span class="op">:</span> box_upper_whisker<span class="op">,</span></span>
+<span id="cb7-758"><a href="#cb7-758" aria-hidden="true" tabindex="-1"></a>  <span class="dt">q1</span><span class="op">:</span> box_q1<span class="op">,</span></span>
+<span id="cb7-759"><a href="#cb7-759" aria-hidden="true" tabindex="-1"></a>  <span class="dt">q3</span><span class="op">:</span> box_q3<span class="op">,</span></span>
+<span id="cb7-760"><a href="#cb7-760" aria-hidden="true" tabindex="-1"></a>  <span class="dt">median</span><span class="op">:</span> box_median</span>
+<span id="cb7-761"><a href="#cb7-761" aria-hidden="true" tabindex="-1"></a>}]</span>
+<span id="cb7-762"><a href="#cb7-762" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-763"><a href="#cb7-763" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb7-764"><a href="#cb7-764" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {<span class="dt">background</span><span class="op">:</span> <span class="st">"transparent"</span><span class="op">,</span> <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">"inherit"</span>}<span class="op">,</span></span>
+<span id="cb7-765"><a href="#cb7-765" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb7-766"><a href="#cb7-766" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb7-767"><a href="#cb7-767" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">160</span><span class="op">,</span></span>
+<span id="cb7-768"><a href="#cb7-768" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Value"</span>}<span class="op">,</span></span>
+<span id="cb7-769"><a href="#cb7-769" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">axis</span><span class="op">:</span> <span class="kw">null</span>}<span class="op">,</span></span>
+<span id="cb7-770"><a href="#cb7-770" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb7-771"><a href="#cb7-771" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Whisker line</span></span>
+<span id="cb7-772"><a href="#cb7-772" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>(box_summary<span class="op">,</span> {</span>
+<span id="cb7-773"><a href="#cb7-773" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x1</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">x1</span><span class="op">,</span></span>
+<span id="cb7-774"><a href="#cb7-774" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x2</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">x2</span><span class="op">,</span></span>
+<span id="cb7-775"><a href="#cb7-775" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb7-776"><a href="#cb7-776" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#414042"</span><span class="op">,</span></span>
+<span id="cb7-777"><a href="#cb7-777" aria-hidden="true" tabindex="-1"></a>      <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
+<span id="cb7-778"><a href="#cb7-778" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb7-779"><a href="#cb7-779" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Box</span></span>
+<span id="cb7-780"><a href="#cb7-780" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">rect</span>(box_summary<span class="op">,</span> {</span>
+<span id="cb7-781"><a href="#cb7-781" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x1</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">q1</span><span class="op">,</span></span>
+<span id="cb7-782"><a href="#cb7-782" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x2</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">q3</span><span class="op">,</span></span>
+<span id="cb7-783"><a href="#cb7-783" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y1</span><span class="op">:</span> <span class="op">-</span><span class="fl">0.4</span><span class="op">,</span></span>
+<span id="cb7-784"><a href="#cb7-784" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y2</span><span class="op">:</span> <span class="fl">0.4</span><span class="op">,</span></span>
+<span id="cb7-785"><a href="#cb7-785" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fill</span><span class="op">:</span> <span class="st">"#F2F2F2"</span><span class="op">,</span></span>
+<span id="cb7-786"><a href="#cb7-786" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#414042"</span><span class="op">,</span></span>
+<span id="cb7-787"><a href="#cb7-787" aria-hidden="true" tabindex="-1"></a>      <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
+<span id="cb7-788"><a href="#cb7-788" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb7-789"><a href="#cb7-789" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Median line</span></span>
+<span id="cb7-790"><a href="#cb7-790" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>(box_summary<span class="op">,</span> {</span>
+<span id="cb7-791"><a href="#cb7-791" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">median</span><span class="op">,</span></span>
+<span id="cb7-792"><a href="#cb7-792" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y1</span><span class="op">:</span> <span class="op">-</span><span class="fl">0.4</span><span class="op">,</span></span>
+<span id="cb7-793"><a href="#cb7-793" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y2</span><span class="op">:</span> <span class="fl">0.4</span><span class="op">,</span></span>
+<span id="cb7-794"><a href="#cb7-794" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#414042"</span><span class="op">,</span></span>
+<span id="cb7-795"><a href="#cb7-795" aria-hidden="true" tabindex="-1"></a>      <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span></span>
+<span id="cb7-796"><a href="#cb7-796" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb7-797"><a href="#cb7-797" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Outliers</span></span>
+<span id="cb7-798"><a href="#cb7-798" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(box_outliers<span class="op">.</span><span class="fu">map</span>(v <span class="kw">=&gt;</span> ({v}))<span class="op">,</span> {</span>
+<span id="cb7-799"><a href="#cb7-799" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">v</span><span class="op">,</span></span>
+<span id="cb7-800"><a href="#cb7-800" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb7-801"><a href="#cb7-801" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fill</span><span class="op">:</span> <span class="st">"#ec8525"</span><span class="op">,</span></span>
+<span id="cb7-802"><a href="#cb7-802" aria-hidden="true" tabindex="-1"></a>      <span class="dt">r</span><span class="op">:</span> <span class="dv">3</span></span>
+<span id="cb7-803"><a href="#cb7-803" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb7-804"><a href="#cb7-804" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Lower whisker (from lower whisker end to Q1)</span></span>
+<span id="cb7-805"><a href="#cb7-805" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">link</span>(box_summary<span class="op">,</span> {</span>
+<span id="cb7-806"><a href="#cb7-806" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x1</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">x1</span><span class="op">,</span></span>
+<span id="cb7-807"><a href="#cb7-807" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x2</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">q1</span><span class="op">,</span></span>
+<span id="cb7-808"><a href="#cb7-808" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y1</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb7-809"><a href="#cb7-809" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y2</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb7-810"><a href="#cb7-810" aria-hidden="true" tabindex="-1"></a>  <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#414042"</span><span class="op">,</span></span>
+<span id="cb7-811"><a href="#cb7-811" aria-hidden="true" tabindex="-1"></a>  <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
+<span id="cb7-812"><a href="#cb7-812" aria-hidden="true" tabindex="-1"></a>})<span class="op">,</span></span>
+<span id="cb7-813"><a href="#cb7-813" aria-hidden="true" tabindex="-1"></a><span class="co">// Upper whisker (from Q3 to upper whisker end)</span></span>
+<span id="cb7-814"><a href="#cb7-814" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">link</span>(box_summary<span class="op">,</span> {</span>
+<span id="cb7-815"><a href="#cb7-815" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x1</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">q3</span><span class="op">,</span></span>
+<span id="cb7-816"><a href="#cb7-816" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x2</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">x2</span><span class="op">,</span></span>
+<span id="cb7-817"><a href="#cb7-817" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y1</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb7-818"><a href="#cb7-818" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y2</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb7-819"><a href="#cb7-819" aria-hidden="true" tabindex="-1"></a>  <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#414042"</span><span class="op">,</span></span>
+<span id="cb7-820"><a href="#cb7-820" aria-hidden="true" tabindex="-1"></a>  <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
+<span id="cb7-821"><a href="#cb7-821" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-822"><a href="#cb7-822" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb7-823"><a href="#cb7-823" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-7-1" data-nodetype="declaration">
@@ -724,10 +740,10 @@ Figure&nbsp;4: A boxplot provides a concise visual summary of a variable’s dis
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb8" data-startfrom="821" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 820;"><span id="cb8-821"><a href="#cb8-821" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div style="font-size: 0.9em; color: #555; margin-top: 0.5em; </span></span>
-<span id="cb8-822"><a href="#cb8-822" aria-hidden="true" tabindex="-1"></a><span class="vs">  padding: 0.75em 1em; background: #f9f9f9; border-left: 3px solid #414042;"&gt;</span></span>
-<span id="cb8-823"><a href="#cb8-823" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span><span class="sc">${</span>box_annotation<span class="sc">}</span></span>
-<span id="cb8-824"><a href="#cb8-824" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb8" data-startfrom="827" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 826;"><span id="cb8-827"><a href="#cb8-827" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div style="font-size: 0.9em; color: #555; margin-top: 0.5em; </span></span>
+<span id="cb8-828"><a href="#cb8-828" aria-hidden="true" tabindex="-1"></a><span class="vs">  padding: 0.75em 1em; background: #f9f9f9; border-left: 3px solid #414042;"&gt;</span></span>
+<span id="cb8-829"><a href="#cb8-829" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span><span class="sc">${</span>box_annotation<span class="sc">}</span></span>
+<span id="cb8-830"><a href="#cb8-830" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-8" data-nodetype="expression">
 
@@ -819,8 +835,21 @@ Figure&nbsp;8: A scatter plot showing two distinct groups with different relatio
 <p>Where points fall into distinct clusters or groups, analysing them as a single trend can be misleading. If a grouping variable is present in your data, it is worth plotting groups separately or using colour to distinguish them, as different groups may show quite different relationships (<a href="#fig-scatter-groups" class="quarto-xref">Figure&nbsp;8</a>).</p>
 <p>With large datasets, points can overlap heavily, making it difficult to see the true density and distribution of observations. If a scatter plot looks unusually sparse or clustered in a way that seems inconsistent with the data, overplotting may be obscuring the true pattern.</p>
 <p>Points sitting far from the main cluster may be outliers worth investigating. It is also important to remember that a relationship visible in a scatter plot indicates association, not causation. Two variables can be strongly correlated without one causing the other, and apparent relationships can sometimes reflect the influence of a third variable not included in the plot.</p>
+</section>
+</section>
+<section id="numerical-summaries" class="level2">
+<h2 class="anchored" data-anchor-id="numerical-summaries">Numerical Summaries</h2>
+<section id="means" class="level3">
+<h3 class="anchored" data-anchor-id="means">Means</h3>
+</section>
+<section id="standard-deviations" class="level3">
+<h3 class="anchored" data-anchor-id="standard-deviations">Standard Deviations</h3>
+</section>
+<section id="frequency-tables" class="level3">
+<h3 class="anchored" data-anchor-id="frequency-tables">Frequency Tables</h3>
 
 
+</section>
 </section>
 </section>
 

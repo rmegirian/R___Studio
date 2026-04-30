@@ -9,17 +9,26 @@ website:
   title: "R___Studio"
   draft-mode: gone
   navbar:
-    # logo: "pages/visual_assets/logos/AAGI_logo_leaf.png"
-    # title: "R(ose)Studio"
-    # style: "docked"
     search: true
     collapse-below: lg
-    # collapse-level: 1
     left:
       - text: "Home"
         href: index.qmd
-      - text: "Work"
-        href: guides/index.qmd
+      - text: "Resources"
+        href: resources/resources.qmd
+      - text: "Guides"
+        href: blog/index.qmd
+        
+  sidebar: 
+    - title: "Resources"
+      style: "docked"
+      background: light
+      contents:
+        - resources/resources.qmd
+        - section: "Data Analysis"
+          contents:
+              - resources/analysis_outputs/downloadable_descriptive_and_exploratory_outputs.qmd
+        - section: "Survey Design"
 
 format:
   html:

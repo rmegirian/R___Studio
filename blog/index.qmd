@@ -1,0 +1,15 @@
+---
+title: "Guides"
+subtitle: ""
+listing:
+  contents: .
+  fields: [image, date, title, reading-time, description]
+  sort: "date desc"
+  type: grid
+  categories: true
+  sort-ui: false
+  filter-ui: false
+page-layout: full
+title-block-banner: true
+comments: false
+---
