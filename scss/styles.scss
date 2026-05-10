@@ -1,0 +1,50 @@
+/*-- scss:defaults --*/
+
+
+// Sass Variables
+// https://quarto.org/docs/output-format/html-themes.html#sass-variables
+
+
+@import url('https://fonts.googleapis.com/css2?family=Antic+Didone&family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&family=Petit+Formal+Script&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+$theme-black: #000000; 
+$theme-charcoal: #221F1A;
+$theme-lime: #B5a532;
+$theme-papaya: #Eb7324;
+$theme-lilac: #D5a9ca;
+$theme-beige: #dcd1bf;
+$theme-white: #f4f4f0;
+$theme-blue: #0055a4;
+
+/* Colors */
+/*$body-bg: $theme-white;*/
+$text-color: $theme-black;
+$link-color: $theme-black;
+$link-hover-color: lighten($theme-black, 10%);
+
+/* Fonts */
+$font-family-sans-serif: 'Helvetica Neue', 'Poppins', Helvetica, Arial, sans-serif;
+$font-family-monospace: 'Courier New', Courier, monospace;  
+$font-size-root: 20px;
+
+/*-- scss:rules --*/
+
+h1, h2, h3, h4, h5, h6 {
+  color: $theme-charcoal;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.navbar * {
+  color: $theme-black;
+}
+
+span.navbar-title {
+  color: $theme-black;
+  transition-duration: 0.5s;
+  &:hover {
+    color: lighten($theme-black, 10%);
+    transition-duration: 0.5s;
+  }
+}

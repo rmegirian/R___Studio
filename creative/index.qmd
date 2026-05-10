@@ -1,0 +1,16 @@
+---
+pagetitle: "Creative"
+format:
+  html:
+    toc: false
+filters:
+  - masonry
+listing:
+  contents: creative.yml
+  template: custom.ejs.md
+  fields: [title, image, categories, date]
+  field-display-names: 
+    title: 'Project'
+    categories: 'Skills'
+page-layout: full
+---

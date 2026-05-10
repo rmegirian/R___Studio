@@ -1,6 +1,6 @@
 ---
-title: "Home"
-title-block: none
+pagetitle: "Home"
+format:
+  html:
+    toc: false
 ---
-
-A collection of projects, guides, and ideas at the intersection of behavioural science, design, research, coding and data analytics.

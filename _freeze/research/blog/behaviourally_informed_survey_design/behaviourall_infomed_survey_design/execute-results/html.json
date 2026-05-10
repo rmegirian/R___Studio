@@ -1,0 +1,15 @@
+{
+  "hash": "63da06e829987eedc051d0a9c182712f",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Behaviourally Informed Survey Design\"\nauthor: \"Rose Megirian\"\ncategories: [Research Instrument Design, Surveys, Data Quality, Behavioural Science]\ndescription: \"\"\nbibliography: references.bib\nimage: images/plot.png\n---\n\n\n\n\n::: {.cell}\n\n:::\n\n\nThanks for your interest. this document is in progress and will be published soon :)\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

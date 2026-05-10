@@ -1,15 +1,17 @@
 ---
-title: "Guides"
+page-title: "Guides"
 subtitle: ""
 listing:
   contents: .
-  fields: [image, date, title, reading-time, description]
+  fields: [image, date, title]
+  field-types: 
+    categories: "skills"
   sort: "date desc"
   type: grid
   categories: true
   sort-ui: false
   filter-ui: false
 page-layout: full
-title-block-banner: true
+title-block-banner: false
 comments: false
 ---

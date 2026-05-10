@@ -1,0 +1,14 @@
+---
+page-title: "Research"
+listing:
+  contents: .
+  fields: [image, title, subtitle]
+  type: grid
+  categories: false
+  sort-ui: false
+  filter-ui: false
+page-layout: full
+format:
+  html:
+    toc: false
+---

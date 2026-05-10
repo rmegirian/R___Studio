@@ -14,5 +14,42 @@
       "/blog/descriptive_and_exploratory_outputs/descriptive_and_exploratory_outputs.html",
       "/blog/survey_link_generation/survey_link_generation.html"
     ]
+  },
+  {
+    "listing": "/resources/index.html",
+    "items": [
+      "/resources/analysis_outputs/downloadable_descriptive_and_exploratory_outputs.html",
+      "/resources/analysis_outputs/analysis_outputs.html"
+    ]
+  },
+  {
+    "listing": "/projects/index.html",
+    "items": []
+  },
+  {
+    "listing": "/index.html",
+    "items": []
+  },
+  {
+    "listing": "/index_old.html",
+    "items": []
+  },
+  {
+    "listing": "/research/index.html",
+    "items": [
+      "/research/descriptive_and_exploratory_outputs.html"
+    ]
+  },
+  {
+    "listing": "/creative/index.html",
+    "items": []
+  },
+  {
+    "listing": "/research/blog/index.html",
+    "items": [
+      "/research/blog/behaviourally_informed_survey_design/behaviourall_infomed_survey_design.html",
+      "/research/blog/descriptive_and_exploratory_outputs/descriptive_and_exploratory_outputs.html",
+      "/research/blog/survey_link_generation/survey_link_generation.html"
+    ]
   }
 ]

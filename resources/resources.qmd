@@ -1,5 +1,0 @@
----
-title: "Resources"
-title-block: false
-format: html
----

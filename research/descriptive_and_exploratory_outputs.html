@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="quarto-1.8.24" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+
+<meta name="author" content="Rose Megirian" />
+<meta name="description" content="An introduction to reading and interpreting common descriptive plots and numerical summaries, covering what they represent, what different patterns indicate, and when each is appropriate." />
+
+<title>Interpreting Descriptive and Exploratory Outputs: Plots and Summaries.</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<!-- htmldependencies:E3FAD763 -->
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link  href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet" />
+
+
+<link rel="stylesheet" href="../scss/styles.css" />
+</head>
+
+<body>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="/index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="/index.html">
+    <span class="navbar-title">R___Studio</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+  aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation"
+  onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="/creative/index.html"> 
+<span class="menu-text">Creative</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="/research/index.html"> 
+<span class="menu-text">Research</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="/about/about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="/blog/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://www.linkedin.com/in/rosemegirian/"  title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+    <a href="https://github.com/rmegirian"  title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <div id="quarto-toc-target"></div>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Interpreting Descriptive and Exploratory Outputs: Plots and Summaries.</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Data Analysis</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    An introduction to reading and interpreting common descriptive plots and numerical summaries, covering what they represent, what different patterns indicate, and when each is appropriate.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Rose Megirian </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#sec-plotsandfigures" id="toc-sec-plotsandfigures">Plots and Figures</a>
+  <ul>
+  <li><a href="#sec-histograms" id="toc-sec-histograms">Histograms</a>
+  <ul>
+  <li><a href="#reading-histograms" id="toc-reading-histograms">Reading histograms</a></li>
+  </ul></li>
+  <li><a href="#sec-boxplots" id="toc-sec-boxplots">Boxplots</a>
+  <ul>
+  <li><a href="#reading-boxplots" id="toc-reading-boxplots">Reading boxplots</a></li>
+  <li><a href="#comparing-groups" id="toc-comparing-groups">Comparing groups</a></li>
+  </ul></li>
+  <li><a href="#sec-scatterplots" id="toc-sec-scatterplots">Scatter Plots</a>
+  <ul>
+  <li><a href="#reading-scatter-plots" id="toc-reading-scatter-plots">Reading scatter plots</a></li>
+  </ul></li>
+  <li><a href="#numerical-summaries" id="toc-numerical-summaries">Numerical Summaries</a>
+  <ul>
+  <li><a href="#means" id="toc-means">Means</a></li>
+  <li><a href="#standard-deviations" id="toc-standard-deviations">Standard Deviations</a></li>
+  <li><a href="#frequency-tables" id="toc-frequency-tables">Frequency Tables</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+<div class="cell quarto-layout-panel" data-layout="[[33.33,33.33,33.33],[100]]">
+
+</div>
+<p>Descriptive and exploratory analysis summarises and describes the characteristics of a dataset, providing insight into distributions, central tendency, spread, and relationships between variables. It serves two closely related purposes: as a standalone way of characterising and communicating what the data shows, and as an essential first step before formal modelling or hypothesis testing. Used in this exploratory capacity, descriptive analysis helps reveal the shape and structure of your data, identify potential issues, and inform decisions about how best to proceed with formal analysis.</p>
+<p>This guide covers the most common outputs from descriptive and exploratory analysis that you are likely to encounter, explaining what they represent, what different patterns indicate, and what types of data each is appropriate for. It is organised into two sections: plots and figures, which covers common visualisations used to explore and describe data, and numerical summaries, which covers the key statistics used to characterise and communicate the properties of a dataset.</p>
+<section id="sec-plotsandfigures" class="level1">
+<h1>Plots and Figures</h1>
+<p>Visualisations are one of the most powerful tools in data analysis, making patterns, distributions, and relationships visible in ways that raw numbers alone often cannot. Plots like histograms, boxplots, and scatter plots are particularly valuable during exploratory data analysis, helping to reveal the shape and spread of data, identify outliers, and assess relationships between variables. This guide covers the most common descriptive plot types you are likely to encounter, explaining what they represent, what different patterns indicate, and what types of data each is appropriate for.</p>
+<section id="sec-histograms" class="level2">
+<h2>Histograms</h2>
+<div class="cell">
+<div class="sourceCode" id="cb1" data-startFrom="513" data-source-offset="-1"><pre class="sourceCode js cell-code hidden"><code class="sourceCode javascript" style="counter-reset: source-line 512;"><span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a>viewof dataset <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
+<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a>  [</span>
+<span id="cb1-515"><a href="#cb1-515" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Normal Distribution&quot;</span><span class="op">,</span> <span class="st">&quot;Skewed Distribution&quot;</span><span class="op">,</span> <span class="st">&quot;Bimodal Distribution&quot;</span><span class="op">,</span></span>
+<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Uniform Distribution&quot;</span><span class="op">,</span> <span class="st">&quot;Exponential Distribution&quot;</span></span>
+<span id="cb1-517"><a href="#cb1-517" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb1-518"><a href="#cb1-518" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">label</span><span class="op">:</span> <span class="st">&quot;Distribution&quot;</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">&quot;Normal Distribution&quot;</span>}</span>
+<span id="cb1-519"><a href="#cb1-519" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-520"><a href="#cb1-520" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-521"><a href="#cb1-521" aria-hidden="true" tabindex="-1"></a>viewof bin_width <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> {</span>
+<span id="cb1-522"><a href="#cb1-522" aria-hidden="true" tabindex="-1"></a>  <span class="dt">label</span><span class="op">:</span> <span class="st">&quot;Bin width&quot;</span><span class="op">,</span></span>
+<span id="cb1-523"><a href="#cb1-523" aria-hidden="true" tabindex="-1"></a>  <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb1-524"><a href="#cb1-524" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> <span class="dv">6</span></span>
+<span id="cb1-525"><a href="#cb1-525" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb2" data-startFrom="529" data-source-offset="0"><pre class="sourceCode js cell-code hidden"><code class="sourceCode javascript" style="counter-reset: source-line 528;"><span id="cb2-529"><a href="#cb2-529" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div style=&quot;margin-top: 2em;&quot;&gt;&lt;/div&gt;`</span></span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb3" data-startFrom="537" data-source-offset="-1"><pre class="sourceCode js cell-code hidden"><code class="sourceCode javascript" style="counter-reset: source-line 536;"><span id="cb3-537"><a href="#cb3-537" aria-hidden="true" tabindex="-1"></a>all_data <span class="op">=</span> <span class="fu">transpose</span>(hist_data)</span>
+<span id="cb3-538"><a href="#cb3-538" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-539"><a href="#cb3-539" aria-hidden="true" tabindex="-1"></a>filtered <span class="op">=</span> all_data<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">dataset</span> <span class="op">===</span> dataset)</span>
+<span id="cb3-540"><a href="#cb3-540" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-541"><a href="#cb3-541" aria-hidden="true" tabindex="-1"></a>annotation <span class="op">=</span> ({</span>
+<span id="cb3-542"><a href="#cb3-542" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Normal Distribution&quot;</span><span class="op">:</span> <span class="vs">`Values cluster symmetrically around a central point. </span></span>
+<span id="cb3-543"><a href="#cb3-543" aria-hidden="true" tabindex="-1"></a><span class="vs">    This bell-shaped curve is the most commonly assumed distribution in statistical </span></span>
+<span id="cb3-544"><a href="#cb3-544" aria-hidden="true" tabindex="-1"></a><span class="vs">    methods. Try adjusting bin width to see how it affects the apparent shape.`</span><span class="op">,</span></span>
+<span id="cb3-545"><a href="#cb3-545" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-546"><a href="#cb3-546" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Skewed Distribution&quot;</span><span class="op">:</span> <span class="vs">`This distribution has a long tail to the right, meaning most </span></span>
+<span id="cb3-547"><a href="#cb3-547" aria-hidden="true" tabindex="-1"></a><span class="vs">    values are low but a few are very high. This is called right skew, or positive skew. </span></span>
+<span id="cb3-548"><a href="#cb3-548" aria-hidden="true" tabindex="-1"></a><span class="vs">    Skewed data can violate the normality assumptions of some statistical methods.`</span><span class="op">,</span></span>
+<span id="cb3-549"><a href="#cb3-549" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-550"><a href="#cb3-550" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Bimodal Distribution&quot;</span><span class="op">:</span> <span class="vs">`Two distinct peaks suggest two subgroups within the data. </span></span>
+<span id="cb3-551"><a href="#cb3-551" aria-hidden="true" tabindex="-1"></a><span class="vs">    This is called a bimodal distribution. Seeing two humps in a histogram is often </span></span>
+<span id="cb3-552"><a href="#cb3-552" aria-hidden="true" tabindex="-1"></a><span class="vs">    a signal to investigate whether the data should be analysed as separate groups.`</span><span class="op">,</span></span>
+<span id="cb3-553"><a href="#cb3-553" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-554"><a href="#cb3-554" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Uniform Distribution&quot;</span><span class="op">:</span> <span class="vs">`Values are spread roughly evenly across the range with no </span></span>
+<span id="cb3-555"><a href="#cb3-555" aria-hidden="true" tabindex="-1"></a><span class="vs">    clear peak. This uniform distribution is relatively rare in practice but useful </span></span>
+<span id="cb3-556"><a href="#cb3-556" aria-hidden="true" tabindex="-1"></a><span class="vs">    for understanding how histograms represent shape.`</span><span class="op">,</span></span>
+<span id="cb3-557"><a href="#cb3-557" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-558"><a href="#cb3-558" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Exponential Distribution&quot;</span><span class="op">:</span> <span class="vs">`A sharp peak near zero with a long right tail. Common </span></span>
+<span id="cb3-559"><a href="#cb3-559" aria-hidden="true" tabindex="-1"></a><span class="vs">    in data representing waiting times or survival times. Heavily skewed data like </span></span>
+<span id="cb3-560"><a href="#cb3-560" aria-hidden="true" tabindex="-1"></a><span class="vs">    this often benefits from a log transformation before analysis.`</span></span>
+<span id="cb3-561"><a href="#cb3-561" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-562"><a href="#cb3-562" aria-hidden="true" tabindex="-1"></a>})[dataset] <span class="op">||</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb3-563"><a href="#cb3-563" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-564"><a href="#cb3-564" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb3-565"><a href="#cb3-565" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {<span class="dt">background</span><span class="op">:</span> <span class="st">&quot;transparent&quot;</span><span class="op">,</span> <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">&quot;inherit&quot;</span>}<span class="op">,</span></span>
+<span id="cb3-566"><a href="#cb3-566" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb3-567"><a href="#cb3-567" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">&quot;Value&quot;</span>}<span class="op">,</span></span>
+<span id="cb3-568"><a href="#cb3-568" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">&quot;Frequency&quot;</span>}<span class="op">,</span></span>
+<span id="cb3-569"><a href="#cb3-569" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb3-570"><a href="#cb3-570" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">rectY</span>(</span>
+<span id="cb3-571"><a href="#cb3-571" aria-hidden="true" tabindex="-1"></a>      filtered<span class="op">,</span></span>
+<span id="cb3-572"><a href="#cb3-572" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">binX</span>(</span>
+<span id="cb3-573"><a href="#cb3-573" aria-hidden="true" tabindex="-1"></a>        {<span class="dt">y</span><span class="op">:</span> <span class="st">&quot;count&quot;</span>}<span class="op">,</span></span>
+<span id="cb3-574"><a href="#cb3-574" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb3-575"><a href="#cb3-575" aria-hidden="true" tabindex="-1"></a>          <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="op">+</span>d<span class="op">.</span><span class="at">value</span><span class="op">,</span></span>
+<span id="cb3-576"><a href="#cb3-576" aria-hidden="true" tabindex="-1"></a>          <span class="dt">thresholds</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">range</span>(</span>
+<span id="cb3-577"><a href="#cb3-577" aria-hidden="true" tabindex="-1"></a>            d3<span class="op">.</span><span class="fu">min</span>(filtered<span class="op">,</span> d <span class="kw">=&gt;</span> <span class="op">+</span>d<span class="op">.</span><span class="at">value</span>)<span class="op">,</span></span>
+<span id="cb3-578"><a href="#cb3-578" aria-hidden="true" tabindex="-1"></a>            d3<span class="op">.</span><span class="fu">max</span>(filtered<span class="op">,</span> d <span class="kw">=&gt;</span> <span class="op">+</span>d<span class="op">.</span><span class="at">value</span>) <span class="op">+</span> bin_width<span class="op">,</span></span>
+<span id="cb3-579"><a href="#cb3-579" aria-hidden="true" tabindex="-1"></a>            bin_width</span>
+<span id="cb3-580"><a href="#cb3-580" aria-hidden="true" tabindex="-1"></a>          )<span class="op">,</span></span>
+<span id="cb3-581"><a href="#cb3-581" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fill</span><span class="op">:</span> <span class="st">&quot;#F2F2F2&quot;</span><span class="op">,</span></span>
+<span id="cb3-582"><a href="#cb3-582" aria-hidden="true" tabindex="-1"></a>          <span class="dt">stroke</span><span class="op">:</span> <span class="st">&quot;#414042&quot;</span><span class="op">,</span></span>
+<span id="cb3-583"><a href="#cb3-583" aria-hidden="true" tabindex="-1"></a>          <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">0.8</span></span>
+<span id="cb3-584"><a href="#cb3-584" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb3-585"><a href="#cb3-585" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb3-586"><a href="#cb3-586" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb3-587"><a href="#cb3-587" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb3-588"><a href="#cb3-588" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb3-589"><a href="#cb3-589" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb4" data-startFrom="593" data-source-offset="0"><pre class="sourceCode js cell-code hidden"><code class="sourceCode javascript" style="counter-reset: source-line 592;"><span id="cb4-593"><a href="#cb4-593" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div style=&quot;font-size: 0.9em; color: #555; margin-top: .5em; </span></span>
+<span id="cb4-594"><a href="#cb4-594" aria-hidden="true" tabindex="-1"></a><span class="vs">  padding: 0.75em 1em; background: #f9f9f9; border-left: 3px solid #414042;&quot;&gt;</span></span>
+<span id="cb4-595"><a href="#cb4-595" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span><span class="sc">${</span>annotation<span class="sc">}</span></span>
+<span id="cb4-596"><a href="#cb4-596" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;`</span></span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>A histogram displays the distribution of a continuous variable by grouping values into intervals known as bins, and showing how many observations fall within each bin as a bar. The height of each bar represents the frequency of values in that range, making it easy to see at a glance where values cluster, how spread out they are, and whether any unusual patterns are present.</p>
+<p>A key feature of a histogram is that the bars touch. This reflects the fact that the underlying data is continuous, meaning there are no gaps between possible values and therefore no gaps between bins. This distinguishes a histogram from a bar chart, which is used for discrete or categorical data where each bar represents a separate group rather than a range of a continuous scale. If your data consists of counts, ordinal scores, or named categories, a bar chart is the more appropriate choice.</p>
+<p>Histograms are commonly used during exploratory data analysis to understand the distribution of a variable before any formal modelling takes place. They help reveal how spread out values are, whether they cluster around a central point, whether there are unusually high or low values, and whether the distribution is symmetrical or skewed. This kind of early understanding of your data is important for informing decisions about which analytical methods are likely to be appropriate.</p>
+<p>Histograms are also widely used during and after model fitting to examine residuals, the differences between observed values and the values predicted by the model. Most common analytical methods require that residuals are approximately normally distributed, and plotting a histogram of residuals is a straightforward way to assess whether this holds. It is worth noting that it is the residuals rather than the raw data that need to follow an approximately normal distribution. Raw data can be skewed or non-normal and the residuals can still be approximately normal after a model is fitted. However, heavily non-normal raw data may be an early indication that this is worth checking carefully once a model has been fitted.</p>
+<section id="reading-histograms" class="level3">
+<h3>Reading histograms</h3>
+<p>Look at where the bars are tallest, as this is where most values fall. A symmetrical bell-shaped curve suggests an approximately normal distribution, where values cluster evenly around a central point with the mean, median and mode all close together (<strong>?@fig-hist-normal</strong>). A longer tail on one side indicates skewness. A right-skewed distribution has a tail extending to the right, meaning most values are lower with fewer very high values pulling the mean upward. A left-skewed distribution has a tail extending to the left, meaning most values are higher with fewer very low values pulling the mean downward (<strong>?@fig-hist-skewed</strong>). Two distinct peaks suggest the data may contain two subgroups with different underlying characteristics, known as a bimodal distribution, which is worth investigating further before proceeding with analysis (<strong>?@fig-hist-bimodal</strong>). Bars sitting far from the main cluster may indicate outliers worth examining.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Normal example</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Skewed example</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Bimodal example</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-boxplots" class="level2">
+<h2>Boxplots</h2>
+<p>A boxplot, or box-and-whisker plot, summarises the distribution of a continuous variable by displaying key statistics including the median, quartiles, and potential outliers in a compact visual form. Boxplots are particularly useful in exploratory data analysis for understanding the spread and shape of your data, and for comparing distributions across groups.</p>
+<p>Because the boxplot is built around the median and quartiles rather than the mean, it is not strongly influenced by extreme values. A single very high or very low observation can pull the mean substantially away from the centre of the data, but has little effect on the median or the box, making boxplots a reliable summary of your data’s distribution even when outliers are present.</p>
+<p>It is worth noting that the 1.5 times IQR rule used to define the whiskers and flag potential outliers is a convention rather than a formal statistical test. Points plotted beyond the whiskers are not necessarily problematic but are worth examining in the context of your data. It is also worth being aware that boxplots do not convey sample size, meaning a box based on ten observations looks the same as one based on ten thousand.</p>
+<section id="reading-boxplots" class="level3">
+<h3>Reading boxplots</h3>
+<p><br />
+</p>
+<div class="cell">
+<div class="sourceCode" id="cb5" data-startFrom="693" data-source-offset="0"><pre class="sourceCode js cell-code hidden"><code class="sourceCode javascript" style="counter-reset: source-line 692;"><span id="cb5-693"><a href="#cb5-693" aria-hidden="true" tabindex="-1"></a>viewof box_dataset <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(</span>
+<span id="cb5-694"><a href="#cb5-694" aria-hidden="true" tabindex="-1"></a>  [</span>
+<span id="cb5-695"><a href="#cb5-695" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Normal Distribution&quot;</span><span class="op">,</span> <span class="st">&quot;Skewed Distribution&quot;</span><span class="op">,</span> <span class="st">&quot;Bimodal Distribution&quot;</span><span class="op">,</span></span>
+<span id="cb5-696"><a href="#cb5-696" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Uniform Distribution&quot;</span><span class="op">,</span> <span class="st">&quot;Exponential Distribution&quot;</span></span>
+<span id="cb5-697"><a href="#cb5-697" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb5-698"><a href="#cb5-698" aria-hidden="true" tabindex="-1"></a>  {<span class="dt">label</span><span class="op">:</span> <span class="st">&quot;Distribution&quot;</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="st">&quot;Normal Distribution&quot;</span>}</span>
+<span id="cb5-699"><a href="#cb5-699" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb6" data-startFrom="705" data-source-offset="0"><pre class="sourceCode js cell-code hidden"><code class="sourceCode javascript" style="counter-reset: source-line 704;"><span id="cb6-705"><a href="#cb6-705" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div style=&quot;margin-top: 2em;&quot;&gt;&lt;/div&gt;`</span></span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb7" data-startFrom="713" data-source-offset="-1"><pre class="sourceCode js cell-code hidden"><code class="sourceCode javascript" style="counter-reset: source-line 712;"><span id="cb7-713"><a href="#cb7-713" aria-hidden="true" tabindex="-1"></a>box_all_data <span class="op">=</span> <span class="fu">transpose</span>(box_data)</span>
+<span id="cb7-714"><a href="#cb7-714" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-715"><a href="#cb7-715" aria-hidden="true" tabindex="-1"></a>box_filtered <span class="op">=</span> box_all_data<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">dataset</span> <span class="op">===</span> box_dataset)</span>
+<span id="cb7-716"><a href="#cb7-716" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-717"><a href="#cb7-717" aria-hidden="true" tabindex="-1"></a>box_values <span class="op">=</span> box_filtered<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> <span class="op">+</span>d<span class="op">.</span><span class="at">value</span>)</span>
+<span id="cb7-718"><a href="#cb7-718" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-719"><a href="#cb7-719" aria-hidden="true" tabindex="-1"></a><span class="co">// Compute summary stats</span></span>
+<span id="cb7-720"><a href="#cb7-720" aria-hidden="true" tabindex="-1"></a>box_sorted <span class="op">=</span> [<span class="op">...</span>box_values]<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a <span class="op">-</span> b)</span>
+<span id="cb7-721"><a href="#cb7-721" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-722"><a href="#cb7-722" aria-hidden="true" tabindex="-1"></a>box_q1 <span class="op">=</span> d3<span class="op">.</span><span class="fu">quantile</span>(box_sorted<span class="op">,</span> <span class="fl">0.25</span>)</span>
+<span id="cb7-723"><a href="#cb7-723" aria-hidden="true" tabindex="-1"></a>box_q3 <span class="op">=</span> d3<span class="op">.</span><span class="fu">quantile</span>(box_sorted<span class="op">,</span> <span class="fl">0.75</span>)</span>
+<span id="cb7-724"><a href="#cb7-724" aria-hidden="true" tabindex="-1"></a>box_median <span class="op">=</span> d3<span class="op">.</span><span class="fu">quantile</span>(box_sorted<span class="op">,</span> <span class="fl">0.5</span>)</span>
+<span id="cb7-725"><a href="#cb7-725" aria-hidden="true" tabindex="-1"></a>box_iqr <span class="op">=</span> box_q3 <span class="op">-</span> box_q1</span>
+<span id="cb7-726"><a href="#cb7-726" aria-hidden="true" tabindex="-1"></a>box_lower_fence <span class="op">=</span> box_q1 <span class="op">-</span> <span class="fl">1.5</span> <span class="op">*</span> box_iqr</span>
+<span id="cb7-727"><a href="#cb7-727" aria-hidden="true" tabindex="-1"></a>box_upper_fence <span class="op">=</span> box_q3 <span class="op">+</span> <span class="fl">1.5</span> <span class="op">*</span> box_iqr</span>
+<span id="cb7-728"><a href="#cb7-728" aria-hidden="true" tabindex="-1"></a>box_lower_whisker <span class="op">=</span> d3<span class="op">.</span><span class="fu">min</span>(box_values<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d <span class="op">&gt;=</span> box_lower_fence))</span>
+<span id="cb7-729"><a href="#cb7-729" aria-hidden="true" tabindex="-1"></a>box_upper_whisker <span class="op">=</span> d3<span class="op">.</span><span class="fu">max</span>(box_values<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d <span class="op">&lt;=</span> box_upper_fence))</span>
+<span id="cb7-730"><a href="#cb7-730" aria-hidden="true" tabindex="-1"></a>box_outliers <span class="op">=</span> box_values<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d <span class="op">&lt;</span> box_lower_fence <span class="op">||</span> d <span class="op">&gt;</span> box_upper_fence)</span>
+<span id="cb7-731"><a href="#cb7-731" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-732"><a href="#cb7-732" aria-hidden="true" tabindex="-1"></a>box_annotation <span class="op">=</span> ({</span>
+<span id="cb7-733"><a href="#cb7-733" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Normal Distribution&quot;</span><span class="op">:</span> <span class="vs">`The median sits centrally within the box and the whiskers </span></span>
+<span id="cb7-734"><a href="#cb7-734" aria-hidden="true" tabindex="-1"></a><span class="vs">    are roughly equal in length, indicating a roughly symmetric distribution with </span></span>
+<span id="cb7-735"><a href="#cb7-735" aria-hidden="true" tabindex="-1"></a><span class="vs">    values spread evenly around the centre. This is consistent with a normal </span></span>
+<span id="cb7-736"><a href="#cb7-736" aria-hidden="true" tabindex="-1"></a><span class="vs">    distribution. There are few or no outliers.`</span><span class="op">,</span></span>
+<span id="cb7-737"><a href="#cb7-737" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-738"><a href="#cb7-738" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Skewed Distribution&quot;</span><span class="op">:</span> <span class="vs">`The median is pulled toward the left of the box and the </span></span>
+<span id="cb7-739"><a href="#cb7-739" aria-hidden="true" tabindex="-1"></a><span class="vs">    right whisker is considerably longer than the left, indicating right skew. A </span></span>
+<span id="cb7-740"><a href="#cb7-740" aria-hidden="true" tabindex="-1"></a><span class="vs">    small number of very high values extend the upper whisker and appear as outliers. </span></span>
+<span id="cb7-741"><a href="#cb7-741" aria-hidden="true" tabindex="-1"></a><span class="vs">    Compare this with the histogram view — the long right tail is visible in both </span></span>
+<span id="cb7-742"><a href="#cb7-742" aria-hidden="true" tabindex="-1"></a><span class="vs">    plot types but manifests differently.`</span><span class="op">,</span></span>
+<span id="cb7-743"><a href="#cb7-743" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-744"><a href="#cb7-744" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Bimodal Distribution&quot;</span><span class="op">:</span> <span class="vs">`A bimodal distribution is one of the harder patterns to </span></span>
+<span id="cb7-745"><a href="#cb7-745" aria-hidden="true" tabindex="-1"></a><span class="vs">    detect in a boxplot. The box and whiskers may appear relatively wide, reflecting </span></span>
+<span id="cb7-746"><a href="#cb7-746" aria-hidden="true" tabindex="-1"></a><span class="vs">    the spread between two clusters, but the two peaks are not visible the way they </span></span>
+<span id="cb7-747"><a href="#cb7-747" aria-hidden="true" tabindex="-1"></a><span class="vs">    are in a histogram. This is an important limitation of boxplots — they summarise </span></span>
+<span id="cb7-748"><a href="#cb7-748" aria-hidden="true" tabindex="-1"></a><span class="vs">    distribution shape but can obscure underlying structure. A histogram or density </span></span>
+<span id="cb7-749"><a href="#cb7-749" aria-hidden="true" tabindex="-1"></a><span class="vs">    plot is better for detecting bimodality.`</span><span class="op">,</span></span>
+<span id="cb7-750"><a href="#cb7-750" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-751"><a href="#cb7-751" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Uniform Distribution&quot;</span><span class="op">:</span> <span class="vs">`The median sits near the centre of the box and both </span></span>
+<span id="cb7-752"><a href="#cb7-752" aria-hidden="true" tabindex="-1"></a><span class="vs">    whiskers are long and roughly equal, reflecting the even spread of values across </span></span>
+<span id="cb7-753"><a href="#cb7-753" aria-hidden="true" tabindex="-1"></a><span class="vs">    the full range. There are few outliers because no values fall unusually far from </span></span>
+<span id="cb7-754"><a href="#cb7-754" aria-hidden="true" tabindex="-1"></a><span class="vs">    the rest — everything is equally spread.`</span><span class="op">,</span></span>
+<span id="cb7-755"><a href="#cb7-755" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-756"><a href="#cb7-756" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Exponential Distribution&quot;</span><span class="op">:</span> <span class="vs">`The median sits close to the left edge of the box and </span></span>
+<span id="cb7-757"><a href="#cb7-757" aria-hidden="true" tabindex="-1"></a><span class="vs">    the right whisker is much longer than the left, with many high-value outliers </span></span>
+<span id="cb7-758"><a href="#cb7-758" aria-hidden="true" tabindex="-1"></a><span class="vs">    visible beyond the upper whisker. This strongly right-skewed pattern is typical </span></span>
+<span id="cb7-759"><a href="#cb7-759" aria-hidden="true" tabindex="-1"></a><span class="vs">    of exponential data and is a signal that standard analytical methods assuming </span></span>
+<span id="cb7-760"><a href="#cb7-760" aria-hidden="true" tabindex="-1"></a><span class="vs">    normality may not be appropriate without transformation.`</span></span>
+<span id="cb7-761"><a href="#cb7-761" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-762"><a href="#cb7-762" aria-hidden="true" tabindex="-1"></a>})[box_dataset] <span class="op">||</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb7-763"><a href="#cb7-763" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-764"><a href="#cb7-764" aria-hidden="true" tabindex="-1"></a><span class="co">// Combine whisker and box data for Plot</span></span>
+<span id="cb7-765"><a href="#cb7-765" aria-hidden="true" tabindex="-1"></a>box_summary <span class="op">=</span> [{ </span>
+<span id="cb7-766"><a href="#cb7-766" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x1</span><span class="op">:</span> box_lower_whisker<span class="op">,</span> </span>
+<span id="cb7-767"><a href="#cb7-767" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x2</span><span class="op">:</span> box_upper_whisker<span class="op">,</span></span>
+<span id="cb7-768"><a href="#cb7-768" aria-hidden="true" tabindex="-1"></a>  <span class="dt">q1</span><span class="op">:</span> box_q1<span class="op">,</span></span>
+<span id="cb7-769"><a href="#cb7-769" aria-hidden="true" tabindex="-1"></a>  <span class="dt">q3</span><span class="op">:</span> box_q3<span class="op">,</span></span>
+<span id="cb7-770"><a href="#cb7-770" aria-hidden="true" tabindex="-1"></a>  <span class="dt">median</span><span class="op">:</span> box_median</span>
+<span id="cb7-771"><a href="#cb7-771" aria-hidden="true" tabindex="-1"></a>}]</span>
+<span id="cb7-772"><a href="#cb7-772" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-773"><a href="#cb7-773" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb7-774"><a href="#cb7-774" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {<span class="dt">background</span><span class="op">:</span> <span class="st">&quot;transparent&quot;</span><span class="op">,</span> <span class="dt">fontFamily</span><span class="op">:</span> <span class="st">&quot;inherit&quot;</span>}<span class="op">,</span></span>
+<span id="cb7-775"><a href="#cb7-775" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb7-776"><a href="#cb7-776" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb7-777"><a href="#cb7-777" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">160</span><span class="op">,</span></span>
+<span id="cb7-778"><a href="#cb7-778" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">&quot;Value&quot;</span>}<span class="op">,</span></span>
+<span id="cb7-779"><a href="#cb7-779" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">axis</span><span class="op">:</span> <span class="kw">null</span>}<span class="op">,</span></span>
+<span id="cb7-780"><a href="#cb7-780" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb7-781"><a href="#cb7-781" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Whisker line</span></span>
+<span id="cb7-782"><a href="#cb7-782" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>(box_summary<span class="op">,</span> {</span>
+<span id="cb7-783"><a href="#cb7-783" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x1</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">x1</span><span class="op">,</span></span>
+<span id="cb7-784"><a href="#cb7-784" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x2</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">x2</span><span class="op">,</span></span>
+<span id="cb7-785"><a href="#cb7-785" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb7-786"><a href="#cb7-786" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">&quot;#414042&quot;</span><span class="op">,</span></span>
+<span id="cb7-787"><a href="#cb7-787" aria-hidden="true" tabindex="-1"></a>      <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
+<span id="cb7-788"><a href="#cb7-788" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb7-789"><a href="#cb7-789" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Box</span></span>
+<span id="cb7-790"><a href="#cb7-790" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">rect</span>(box_summary<span class="op">,</span> {</span>
+<span id="cb7-791"><a href="#cb7-791" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x1</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">q1</span><span class="op">,</span></span>
+<span id="cb7-792"><a href="#cb7-792" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x2</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">q3</span><span class="op">,</span></span>
+<span id="cb7-793"><a href="#cb7-793" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y1</span><span class="op">:</span> <span class="op">-</span><span class="fl">0.4</span><span class="op">,</span></span>
+<span id="cb7-794"><a href="#cb7-794" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y2</span><span class="op">:</span> <span class="fl">0.4</span><span class="op">,</span></span>
+<span id="cb7-795"><a href="#cb7-795" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fill</span><span class="op">:</span> <span class="st">&quot;#F2F2F2&quot;</span><span class="op">,</span></span>
+<span id="cb7-796"><a href="#cb7-796" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">&quot;#414042&quot;</span><span class="op">,</span></span>
+<span id="cb7-797"><a href="#cb7-797" aria-hidden="true" tabindex="-1"></a>      <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
+<span id="cb7-798"><a href="#cb7-798" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb7-799"><a href="#cb7-799" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Median line</span></span>
+<span id="cb7-800"><a href="#cb7-800" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>(box_summary<span class="op">,</span> {</span>
+<span id="cb7-801"><a href="#cb7-801" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">median</span><span class="op">,</span></span>
+<span id="cb7-802"><a href="#cb7-802" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y1</span><span class="op">:</span> <span class="op">-</span><span class="fl">0.4</span><span class="op">,</span></span>
+<span id="cb7-803"><a href="#cb7-803" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y2</span><span class="op">:</span> <span class="fl">0.4</span><span class="op">,</span></span>
+<span id="cb7-804"><a href="#cb7-804" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">&quot;#414042&quot;</span><span class="op">,</span></span>
+<span id="cb7-805"><a href="#cb7-805" aria-hidden="true" tabindex="-1"></a>      <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span></span>
+<span id="cb7-806"><a href="#cb7-806" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb7-807"><a href="#cb7-807" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Outliers</span></span>
+<span id="cb7-808"><a href="#cb7-808" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(box_outliers<span class="op">.</span><span class="fu">map</span>(v <span class="kw">=&gt;</span> ({v}))<span class="op">,</span> {</span>
+<span id="cb7-809"><a href="#cb7-809" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">v</span><span class="op">,</span></span>
+<span id="cb7-810"><a href="#cb7-810" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb7-811"><a href="#cb7-811" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fill</span><span class="op">:</span> <span class="st">&quot;#ec8525&quot;</span><span class="op">,</span></span>
+<span id="cb7-812"><a href="#cb7-812" aria-hidden="true" tabindex="-1"></a>      <span class="dt">r</span><span class="op">:</span> <span class="dv">3</span></span>
+<span id="cb7-813"><a href="#cb7-813" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb7-814"><a href="#cb7-814" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Lower whisker (from lower whisker end to Q1)</span></span>
+<span id="cb7-815"><a href="#cb7-815" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">link</span>(box_summary<span class="op">,</span> {</span>
+<span id="cb7-816"><a href="#cb7-816" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x1</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">x1</span><span class="op">,</span></span>
+<span id="cb7-817"><a href="#cb7-817" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x2</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">q1</span><span class="op">,</span></span>
+<span id="cb7-818"><a href="#cb7-818" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y1</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb7-819"><a href="#cb7-819" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y2</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb7-820"><a href="#cb7-820" aria-hidden="true" tabindex="-1"></a>  <span class="dt">stroke</span><span class="op">:</span> <span class="st">&quot;#414042&quot;</span><span class="op">,</span></span>
+<span id="cb7-821"><a href="#cb7-821" aria-hidden="true" tabindex="-1"></a>  <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
+<span id="cb7-822"><a href="#cb7-822" aria-hidden="true" tabindex="-1"></a>})<span class="op">,</span></span>
+<span id="cb7-823"><a href="#cb7-823" aria-hidden="true" tabindex="-1"></a><span class="co">// Upper whisker (from Q3 to upper whisker end)</span></span>
+<span id="cb7-824"><a href="#cb7-824" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">link</span>(box_summary<span class="op">,</span> {</span>
+<span id="cb7-825"><a href="#cb7-825" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x1</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">q3</span><span class="op">,</span></span>
+<span id="cb7-826"><a href="#cb7-826" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x2</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">x2</span><span class="op">,</span></span>
+<span id="cb7-827"><a href="#cb7-827" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y1</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb7-828"><a href="#cb7-828" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y2</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb7-829"><a href="#cb7-829" aria-hidden="true" tabindex="-1"></a>  <span class="dt">stroke</span><span class="op">:</span> <span class="st">&quot;#414042&quot;</span><span class="op">,</span></span>
+<span id="cb7-830"><a href="#cb7-830" aria-hidden="true" tabindex="-1"></a>  <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span></span>
+<span id="cb7-831"><a href="#cb7-831" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-832"><a href="#cb7-832" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb7-833"><a href="#cb7-833" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-9" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-10" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-11" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-12" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-13" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-14" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-15" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-16" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb8" data-startFrom="837" data-source-offset="0"><pre class="sourceCode js cell-code hidden"><code class="sourceCode javascript" style="counter-reset: source-line 836;"><span id="cb8-837"><a href="#cb8-837" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div style=&quot;font-size: 0.9em; color: #555; margin-top: 0.5em; </span></span>
+<span id="cb8-838"><a href="#cb8-838" aria-hidden="true" tabindex="-1"></a><span class="vs">  padding: 0.75em 1em; background: #f9f9f9; border-left: 3px solid #414042;&quot;&gt;</span></span>
+<span id="cb8-839"><a href="#cb8-839" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span><span class="sc">${</span>box_annotation<span class="sc">}</span></span>
+<span id="cb8-840"><a href="#cb8-840" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;`</span></span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-8" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>When reading a boxplot, start with the median line. Its position within the box indicates whether the data is roughly symmetric or skewed. A median sitting centrally suggests an even distribution on both sides, while a median closer to one end of the box indicates that values are more concentrated on that side. The relative length of the whiskers tells a similar story; a longer whisker on one side suggests the data extends further in that direction.</p>
+<p>A wide box indicates high variability in the middle 50% of values, while a narrow box suggests values are tightly clustered. The interactive examples above allow you to see how these features change across different distribution shapes, and how the same patterns identified in histograms appear differently when summarised as a boxplot.</p>
+</section>
+<section id="comparing-groups" class="level3">
+<h3>Comparing groups</h3>
+<p>Where boxplots are most powerful is in side-by-side comparison (<strong>?@fig-box-comparing-groups</strong>). Differences in median position indicate differences in central tendency between groups. Differences in box width and whisker length indicate differences in spread. Overlapping boxes suggest groups may not differ meaningfully, while clearly separated boxes suggest real differences worth investigating further.</p>
+</section>
+</section>
+<section id="sec-scatterplots" class="level2">
+<h2>Scatter Plots</h2>
+<p>A scatter plot displays the relationship between two numeric variables by plotting individual observations as points, with one variable on each axis. It is most appropriate when both variables are measured on a continuous scale, making it easy to see at a glance whether a relationship exists, what direction it takes, and how strong it appears to be.</p>
+<p>Scatter plots are particularly valuable during exploratory data analysis as an early step before formal modelling. Seeing the shape of the relationship between two variables helps inform which analytical methods are likely to be appropriate.<br />
+<br />
+</p>
+<div class="quarto-layout-panel" data-layout="[[45,45],[100]]">
+<div class="quarto-layout-row">
+
+</div>
+</div>
+<section id="reading-scatter-plots" class="level3">
+<h3>Reading scatter plots</h3>
+<p><br />
+</p>
+<p>Start with the overall pattern. Points forming an upward trend indicate a positive relationship, where higher values of one variable tend to coincide with higher values of the other. A downward trend indicates a negative relationship. A random scatter with no clear direction suggests little or no relationship between the variables.</p>
+<p>The closeness of points to an imaginary or fitted line reflects the strength of the relationship. Points clustering tightly around a clear trend indicate a strong relationship, while a more dispersed pattern suggests a weaker one. It is also worth looking at whether the relationship is linear, following a straight line, or non-linear, following a curve, as this affects which analytical methods are appropriate (<strong>?@fig-scatter-linear</strong>, <strong>?@fig-scatter-curved</strong>).</p>
+<p>Where points fall into distinct clusters or groups, analysing them as a single trend can be misleading. If a grouping variable is present in your data, it is worth plotting groups separately or using colour to distinguish them, as different groups may show quite different relationships (<strong>?@fig-scatter-groups</strong>).</p>
+<p>With large datasets, points can overlap heavily, making it difficult to see the true density and distribution of observations. If a scatter plot looks unusually sparse or clustered in a way that seems inconsistent with the data, overplotting may be obscuring the true pattern.</p>
+<p>Points sitting far from the main cluster may be outliers worth investigating. It is also important to remember that a relationship visible in a scatter plot indicates association, not causation. Two variables can be strongly correlated without one causing the other, and apparent relationships can sometimes reflect the influence of a third variable not included in the plot.</p>
+</section>
+</section>
+<section id="numerical-summaries" class="level2">
+<h2>Numerical Summaries</h2>
+<section id="means" class="level3">
+<h3>Means</h3>
+</section>
+<section id="standard-deviations" class="level3">
+<h3>Standard Deviations</h3>
+</section>
+<section id="frequency-tables" class="level3">
+<h3>Frequency Tables</h3>
+<div id="quarto-navigation-envelope" class="hidden">
+<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1zaWRlYmFyLXRpdGxl">Interpreting Descriptive and Exploratory Outputs: Plots and Summaries.</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXItdGl0bGU=">R___Studio</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6Q3JlYXRpdmU=">Creative</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2NyZWF0aXZlL2luZGV4Lmh0bWw=">/creative/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6UmVzZWFyY2g=">Research</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L3Jlc2VhcmNoL2luZGV4Lmh0bWw=">/research/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6QWJvdXQ=">About</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2Fib3V0L2Fib3V0Lmh0bWw=">/about/about.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6QmxvZw==">Blog</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLWludC1uYXZiYXI6L2Jsb2cvaW5kZXguaHRtbA==">/blog/index.html</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW5hdmJhci10b29sczpodHRwczovL3d3dy5saW5rZWRpbi5jb20vaW4vcm9zZW1lZ2lyaWFuLw==">https://www.linkedin.com/in/rosemegirian/</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW5hdmJhci10b29sczpodHRwczovL2dpdGh1Yi5jb20vcm1lZ2lyaWFu">https://github.com/rmegirian</span></p>
+<div class="hidden quarto-markdown-envelope-contents" data-render-id="Zm9vdGVyLWNlbnRlcg==">
+<p>© 2026 Rose Megirian</p>
+</div>
+</div>
+<div id="quarto-meta-markdown" class="hidden">
+<p><span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW1ldGF0aXRsZQ==">Interpreting Descriptive and Exploratory Outputs: Plots and Summaries.</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLXR3aXR0ZXJjYXJkdGl0bGU=">Interpreting Descriptive and Exploratory Outputs: Plots and Summaries.</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW9nY2FyZHRpdGxl">Interpreting Descriptive and Exploratory Outputs: Plots and Summaries.</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLXR3aXR0ZXJjYXJkZGVzYw==">An introduction to reading and interpreting common descriptive plots and numerical summaries, covering what they represent, what different patterns indicate, and when each is appropriate.</span> <span class="hidden quarto-markdown-envelope-contents" data-render-id="cXVhcnRvLW9nY2FyZGRkZXNj">An introduction to reading and interpreting common descriptive plots and numerical summaries, covering what they represent, what different patterns indicate, and when each is appropriate.</span></p>
+</div>
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ilxudmlld29mIGRhdGFzZXQgPSBJbnB1dHMuc2VsZWN0KFxuICBbXG4gICAgXCJOb3JtYWwgRGlzdHJpYnV0aW9uXCIsIFwiU2tld2VkIERpc3RyaWJ1dGlvblwiLCBcIkJpbW9kYWwgRGlzdHJpYnV0aW9uXCIsXG4gICAgXCJVbmlmb3JtIERpc3RyaWJ1dGlvblwiLCBcIkV4cG9uZW50aWFsIERpc3RyaWJ1dGlvblwiXG4gIF0sXG4gIHtsYWJlbDogXCJEaXN0cmlidXRpb25cIiwgdmFsdWU6IFwiTm9ybWFsIERpc3RyaWJ1dGlvblwifVxuKVxuXG52aWV3b2YgYmluX3dpZHRoID0gSW5wdXRzLnJhbmdlKFsxLCAzMF0sIHtcbiAgbGFiZWw6IFwiQmluIHdpZHRoXCIsXG4gIHN0ZXA6IDEsXG4gIHZhbHVlOiA2XG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiXG5odG1sYDxkaXYgc3R5bGU9XCJtYXJnaW4tdG9wOiAyZW07XCI+PC9kaXY+YFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0zIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiXG5hbGxfZGF0YSA9IHRyYW5zcG9zZShoaXN0X2RhdGEpXG5cbmZpbHRlcmVkID0gYWxsX2RhdGEuZmlsdGVyKGQgPT4gZC5kYXRhc2V0ID09PSBkYXRhc2V0KVxuXG5hbm5vdGF0aW9uID0gKHtcbiAgXCJOb3JtYWwgRGlzdHJpYnV0aW9uXCI6IGBWYWx1ZXMgY2x1c3RlciBzeW1tZXRyaWNhbGx5IGFyb3VuZCBhIGNlbnRyYWwgcG9pbnQuIFxuICAgIFRoaXMgYmVsbC1zaGFwZWQgY3VydmUgaXMgdGhlIG1vc3QgY29tbW9ubHkgYXNzdW1lZCBkaXN0cmlidXRpb24gaW4gc3RhdGlzdGljYWwgXG4gICAgbWV0aG9kcy4gVHJ5IGFkanVzdGluZyBiaW4gd2lkdGggdG8gc2VlIGhvdyBpdCBhZmZlY3RzIHRoZSBhcHBhcmVudCBzaGFwZS5gLFxuXG4gIFwiU2tld2VkIERpc3RyaWJ1dGlvblwiOiBgVGhpcyBkaXN0cmlidXRpb24gaGFzIGEgbG9uZyB0YWlsIHRvIHRoZSByaWdodCwgbWVhbmluZyBtb3N0IFxuICAgIHZhbHVlcyBhcmUgbG93IGJ1dCBhIGZldyBhcmUgdmVyeSBoaWdoLiBUaGlzIGlzIGNhbGxlZCByaWdodCBza2V3LCBvciBwb3NpdGl2ZSBza2V3LiBcbiAgICBTa2V3ZWQgZGF0YSBjYW4gdmlvbGF0ZSB0aGUgbm9ybWFsaXR5IGFzc3VtcHRpb25zIG9mIHNvbWUgc3RhdGlzdGljYWwgbWV0aG9kcy5gLFxuXG4gIFwiQmltb2RhbCBEaXN0cmlidXRpb25cIjogYFR3byBkaXN0aW5jdCBwZWFrcyBzdWdnZXN0IHR3byBzdWJncm91cHMgd2l0aGluIHRoZSBkYXRhLiBcbiAgICBUaGlzIGlzIGNhbGxlZCBhIGJpbW9kYWwgZGlzdHJpYnV0aW9uLiBTZWVpbmcgdHdvIGh1bXBzIGluIGEgaGlzdG9ncmFtIGlzIG9mdGVuIFxuICAgIGEgc2lnbmFsIHRvIGludmVzdGlnYXRlIHdoZXRoZXIgdGhlIGRhdGEgc2hvdWxkIGJlIGFuYWx5c2VkIGFzIHNlcGFyYXRlIGdyb3Vwcy5gLFxuXG4gIFwiVW5pZm9ybSBEaXN0cmlidXRpb25cIjogYFZhbHVlcyBhcmUgc3ByZWFkIHJvdWdobHkgZXZlbmx5IGFjcm9zcyB0aGUgcmFuZ2Ugd2l0aCBubyBcbiAgICBjbGVhciBwZWFrLiBUaGlzIHVuaWZvcm0gZGlzdHJpYnV0aW9uIGlzIHJlbGF0aXZlbHkgcmFyZSBpbiBwcmFjdGljZSBidXQgdXNlZnVsIFxuICAgIGZvciB1bmRlcnN0YW5kaW5nIGhvdyBoaXN0b2dyYW1zIHJlcHJlc2VudCBzaGFwZS5gLFxuXG4gIFwiRXhwb25lbnRpYWwgRGlzdHJpYnV0aW9uXCI6IGBBIHNoYXJwIHBlYWsgbmVhciB6ZXJvIHdpdGggYSBsb25nIHJpZ2h0IHRhaWwuIENvbW1vbiBcbiAgICBpbiBkYXRhIHJlcHJlc2VudGluZyB3YWl0aW5nIHRpbWVzIG9yIHN1cnZpdmFsIHRpbWVzLiBIZWF2aWx5IHNrZXdlZCBkYXRhIGxpa2UgXG4gICAgdGhpcyBvZnRlbiBiZW5lZml0cyBmcm9tIGEgbG9nIHRyYW5zZm9ybWF0aW9uIGJlZm9yZSBhbmFseXNpcy5gXG5cbn0pW2RhdGFzZXRdIHx8IFwiXCJcblxuUGxvdC5wbG90KHtcbiAgc3R5bGU6IHtiYWNrZ3JvdW5kOiBcInRyYW5zcGFyZW50XCIsIGZvbnRGYW1pbHk6IFwiaW5oZXJpdFwifSxcbiAgbWFyZ2luQm90dG9tOiA1MCxcbiAgeDoge2xhYmVsOiBcIlZhbHVlXCJ9LFxuICB5OiB7bGFiZWw6IFwiRnJlcXVlbmN5XCJ9LFxuICBtYXJrczogW1xuICAgIFBsb3QucmVjdFkoXG4gICAgICBmaWx0ZXJlZCxcbiAgICAgIFBsb3QuYmluWChcbiAgICAgICAge3k6IFwiY291bnRcIn0sXG4gICAgICAgIHtcbiAgICAgICAgICB4OiBkID0+ICtkLnZhbHVlLFxuICAgICAgICAgIHRocmVzaG9sZHM6IGQzLnJhbmdlKFxuICAgICAgICAgICAgZDMubWluKGZpbHRlcmVkLCBkID0+ICtkLnZhbHVlKSxcbiAgICAgICAgICAgIGQzLm1heChmaWx0ZXJlZCwgZCA9PiArZC52YWx1ZSkgKyBiaW5fd2lkdGgsXG4gICAgICAgICAgICBiaW5fd2lkdGhcbiAgICAgICAgICApLFxuICAgICAgICAgIGZpbGw6IFwiI0YyRjJGMlwiLFxuICAgICAgICAgIHN0cm9rZTogXCIjNDE0MDQyXCIsXG4gICAgICAgICAgc3Ryb2tlV2lkdGg6IDAuOFxuICAgICAgICB9XG4gICAgICApXG4gICAgKSxcbiAgICBQbG90LnJ1bGVZKFswXSlcbiAgXVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuaHRtbGA8ZGl2IHN0eWxlPVwiZm9udC1zaXplOiAwLjllbTsgY29sb3I6ICM1NTU7IG1hcmdpbi10b3A6IC41ZW07IFxuICBwYWRkaW5nOiAwLjc1ZW0gMWVtOyBiYWNrZ3JvdW5kOiAjZjlmOWY5OyBib3JkZXItbGVmdDogM3B4IHNvbGlkICM0MTQwNDI7XCI+XG4gICR7YW5ub3RhdGlvbn1cbjwvZGl2PmBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ilxudmlld29mIGJveF9kYXRhc2V0ID0gSW5wdXRzLnNlbGVjdChcbiAgW1xuICAgIFwiTm9ybWFsIERpc3RyaWJ1dGlvblwiLCBcIlNrZXdlZCBEaXN0cmlidXRpb25cIiwgXCJCaW1vZGFsIERpc3RyaWJ1dGlvblwiLFxuICAgIFwiVW5pZm9ybSBEaXN0cmlidXRpb25cIiwgXCJFeHBvbmVudGlhbCBEaXN0cmlidXRpb25cIlxuICBdLFxuICB7bGFiZWw6IFwiRGlzdHJpYnV0aW9uXCIsIHZhbHVlOiBcIk5vcm1hbCBEaXN0cmlidXRpb25cIn1cbilcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuaHRtbGA8ZGl2IHN0eWxlPVwibWFyZ2luLXRvcDogMmVtO1wiPjwvZGl2PmBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuYm94X2FsbF9kYXRhID0gdHJhbnNwb3NlKGJveF9kYXRhKVxuXG5ib3hfZmlsdGVyZWQgPSBib3hfYWxsX2RhdGEuZmlsdGVyKGQgPT4gZC5kYXRhc2V0ID09PSBib3hfZGF0YXNldClcblxuYm94X3ZhbHVlcyA9IGJveF9maWx0ZXJlZC5tYXAoZCA9PiArZC52YWx1ZSlcblxuLy8gQ29tcHV0ZSBzdW1tYXJ5IHN0YXRzXG5ib3hfc29ydGVkID0gWy4uLmJveF92YWx1ZXNdLnNvcnQoKGEsIGIpID0+IGEgLSBiKVxuXG5ib3hfcTEgPSBkMy5xdWFudGlsZShib3hfc29ydGVkLCAwLjI1KVxuYm94X3EzID0gZDMucXVhbnRpbGUoYm94X3NvcnRlZCwgMC43NSlcbmJveF9tZWRpYW4gPSBkMy5xdWFudGlsZShib3hfc29ydGVkLCAwLjUpXG5ib3hfaXFyID0gYm94X3EzIC0gYm94X3ExXG5ib3hfbG93ZXJfZmVuY2UgPSBib3hfcTEgLSAxLjUgKiBib3hfaXFyXG5ib3hfdXBwZXJfZmVuY2UgPSBib3hfcTMgKyAxLjUgKiBib3hfaXFyXG5ib3hfbG93ZXJfd2hpc2tlciA9IGQzLm1pbihib3hfdmFsdWVzLmZpbHRlcihkID0+IGQgPj0gYm94X2xvd2VyX2ZlbmNlKSlcbmJveF91cHBlcl93aGlza2VyID0gZDMubWF4KGJveF92YWx1ZXMuZmlsdGVyKGQgPT4gZCA8PSBib3hfdXBwZXJfZmVuY2UpKVxuYm94X291dGxpZXJzID0gYm94X3ZhbHVlcy5maWx0ZXIoZCA9PiBkIDwgYm94X2xvd2VyX2ZlbmNlIHx8IGQgPiBib3hfdXBwZXJfZmVuY2UpXG5cbmJveF9hbm5vdGF0aW9uID0gKHtcbiAgXCJOb3JtYWwgRGlzdHJpYnV0aW9uXCI6IGBUaGUgbWVkaWFuIHNpdHMgY2VudHJhbGx5IHdpdGhpbiB0aGUgYm94IGFuZCB0aGUgd2hpc2tlcnMgXG4gICAgYXJlIHJvdWdobHkgZXF1YWwgaW4gbGVuZ3RoLCBpbmRpY2F0aW5nIGEgcm91Z2hseSBzeW1tZXRyaWMgZGlzdHJpYnV0aW9uIHdpdGggXG4gICAgdmFsdWVzIHNwcmVhZCBldmVubHkgYXJvdW5kIHRoZSBjZW50cmUuIFRoaXMgaXMgY29uc2lzdGVudCB3aXRoIGEgbm9ybWFsIFxuICAgIGRpc3RyaWJ1dGlvbi4gVGhlcmUgYXJlIGZldyBvciBubyBvdXRsaWVycy5gLFxuXG4gIFwiU2tld2VkIERpc3RyaWJ1dGlvblwiOiBgVGhlIG1lZGlhbiBpcyBwdWxsZWQgdG93YXJkIHRoZSBsZWZ0IG9mIHRoZSBib3ggYW5kIHRoZSBcbiAgICByaWdodCB3aGlza2VyIGlzIGNvbnNpZGVyYWJseSBsb25nZXIgdGhhbiB0aGUgbGVmdCwgaW5kaWNhdGluZyByaWdodCBza2V3LiBBIFxuICAgIHNtYWxsIG51bWJlciBvZiB2ZXJ5IGhpZ2ggdmFsdWVzIGV4dGVuZCB0aGUgdXBwZXIgd2hpc2tlciBhbmQgYXBwZWFyIGFzIG91dGxpZXJzLiBcbiAgICBDb21wYXJlIHRoaXMgd2l0aCB0aGUgaGlzdG9ncmFtIHZpZXcg4oCUIHRoZSBsb25nIHJpZ2h0IHRhaWwgaXMgdmlzaWJsZSBpbiBib3RoIFxuICAgIHBsb3QgdHlwZXMgYnV0IG1hbmlmZXN0cyBkaWZmZXJlbnRseS5gLFxuXG4gIFwiQmltb2RhbCBEaXN0cmlidXRpb25cIjogYEEgYmltb2RhbCBkaXN0cmlidXRpb24gaXMgb25lIG9mIHRoZSBoYXJkZXIgcGF0dGVybnMgdG8gXG4gICAgZGV0ZWN0IGluIGEgYm94cGxvdC4gVGhlIGJveCBhbmQgd2hpc2tlcnMgbWF5IGFwcGVhciByZWxhdGl2ZWx5IHdpZGUsIHJlZmxlY3RpbmcgXG4gICAgdGhlIHNwcmVhZCBiZXR3ZWVuIHR3byBjbHVzdGVycywgYnV0IHRoZSB0d28gcGVha3MgYXJlIG5vdCB2aXNpYmxlIHRoZSB3YXkgdGhleSBcbiAgICBhcmUgaW4gYSBoaXN0b2dyYW0uIFRoaXMgaXMgYW4gaW1wb3J0YW50IGxpbWl0YXRpb24gb2YgYm94cGxvdHMg4oCUIHRoZXkgc3VtbWFyaXNlIFxuICAgIGRpc3RyaWJ1dGlvbiBzaGFwZSBidXQgY2FuIG9ic2N1cmUgdW5kZXJseWluZyBzdHJ1Y3R1cmUuIEEgaGlzdG9ncmFtIG9yIGRlbnNpdHkgXG4gICAgcGxvdCBpcyBiZXR0ZXIgZm9yIGRldGVjdGluZyBiaW1vZGFsaXR5LmAsXG5cbiAgXCJVbmlmb3JtIERpc3RyaWJ1dGlvblwiOiBgVGhlIG1lZGlhbiBzaXRzIG5lYXIgdGhlIGNlbnRyZSBvZiB0aGUgYm94IGFuZCBib3RoIFxuICAgIHdoaXNrZXJzIGFyZSBsb25nIGFuZCByb3VnaGx5IGVxdWFsLCByZWZsZWN0aW5nIHRoZSBldmVuIHNwcmVhZCBvZiB2YWx1ZXMgYWNyb3NzIFxuICAgIHRoZSBmdWxsIHJhbmdlLiBUaGVyZSBhcmUgZmV3IG91dGxpZXJzIGJlY2F1c2Ugbm8gdmFsdWVzIGZhbGwgdW51c3VhbGx5IGZhciBmcm9tIFxuICAgIHRoZSByZXN0IOKAlCBldmVyeXRoaW5nIGlzIGVxdWFsbHkgc3ByZWFkLmAsXG5cbiAgXCJFeHBvbmVudGlhbCBEaXN0cmlidXRpb25cIjogYFRoZSBtZWRpYW4gc2l0cyBjbG9zZSB0byB0aGUgbGVmdCBlZGdlIG9mIHRoZSBib3ggYW5kIFxuICAgIHRoZSByaWdodCB3aGlza2VyIGlzIG11Y2ggbG9uZ2VyIHRoYW4gdGhlIGxlZnQsIHdpdGggbWFueSBoaWdoLXZhbHVlIG91dGxpZXJzIFxuICAgIHZpc2libGUgYmV5b25kIHRoZSB1cHBlciB3aGlza2VyLiBUaGlzIHN0cm9uZ2x5IHJpZ2h0LXNrZXdlZCBwYXR0ZXJuIGlzIHR5cGljYWwgXG4gICAgb2YgZXhwb25lbnRpYWwgZGF0YSBhbmQgaXMgYSBzaWduYWwgdGhhdCBzdGFuZGFyZCBhbmFseXRpY2FsIG1ldGhvZHMgYXNzdW1pbmcgXG4gICAgbm9ybWFsaXR5IG1heSBub3QgYmUgYXBwcm9wcmlhdGUgd2l0aG91dCB0cmFuc2Zvcm1hdGlvbi5gXG5cbn0pW2JveF9kYXRhc2V0XSB8fCBcIlwiXG5cbi8vIENvbWJpbmUgd2hpc2tlciBhbmQgYm94IGRhdGEgZm9yIFBsb3RcbmJveF9zdW1tYXJ5ID0gW3sgXG4gIHgxOiBib3hfbG93ZXJfd2hpc2tlciwgXG4gIHgyOiBib3hfdXBwZXJfd2hpc2tlcixcbiAgcTE6IGJveF9xMSxcbiAgcTM6IGJveF9xMyxcbiAgbWVkaWFuOiBib3hfbWVkaWFuXG59XVxuXG5QbG90LnBsb3Qoe1xuICBzdHlsZToge2JhY2tncm91bmQ6IFwidHJhbnNwYXJlbnRcIiwgZm9udEZhbWlseTogXCJpbmhlcml0XCJ9LFxuICBtYXJnaW5Cb3R0b206IDQwLFxuICBtYXJnaW5MZWZ0OiA0MCxcbiAgaGVpZ2h0OiAxNjAsXG4gIHg6IHtsYWJlbDogXCJWYWx1ZVwifSxcbiAgeToge2F4aXM6IG51bGx9LFxuICBtYXJrczogW1xuICAgIC8vIFdoaXNrZXIgbGluZVxuICAgIFBsb3QucnVsZVgoYm94X3N1bW1hcnksIHtcbiAgICAgIHgxOiBkID0+IGQueDEsXG4gICAgICB4MjogZCA9PiBkLngyLFxuICAgICAgeTogMCxcbiAgICAgIHN0cm9rZTogXCIjNDE0MDQyXCIsXG4gICAgICBzdHJva2VXaWR0aDogMS41XG4gICAgfSksXG4gICAgLy8gQm94XG4gICAgUGxvdC5yZWN0KGJveF9zdW1tYXJ5LCB7XG4gICAgICB4MTogZCA9PiBkLnExLFxuICAgICAgeDI6IGQgPT4gZC5xMyxcbiAgICAgIHkxOiAtMC40LFxuICAgICAgeTI6IDAuNCxcbiAgICAgIGZpbGw6IFwiI0YyRjJGMlwiLFxuICAgICAgc3Ryb2tlOiBcIiM0MTQwNDJcIixcbiAgICAgIHN0cm9rZVdpZHRoOiAxLjVcbiAgICB9KSxcbiAgICAvLyBNZWRpYW4gbGluZVxuICAgIFBsb3QucnVsZVgoYm94X3N1bW1hcnksIHtcbiAgICAgIHg6IGQgPT4gZC5tZWRpYW4sXG4gICAgICB5MTogLTAuNCxcbiAgICAgIHkyOiAwLjQsXG4gICAgICBzdHJva2U6IFwiIzQxNDA0MlwiLFxuICAgICAgc3Ryb2tlV2lkdGg6IDJcbiAgICB9KSxcbiAgICAvLyBPdXRsaWVyc1xuICAgIFBsb3QuZG90KGJveF9vdXRsaWVycy5tYXAodiA9PiAoe3Z9KSksIHtcbiAgICAgIHg6IGQgPT4gZC52LFxuICAgICAgeTogMCxcbiAgICAgIGZpbGw6IFwiI2VjODUyNVwiLFxuICAgICAgcjogM1xuICAgIH0pLFxuICAgIC8vIExvd2VyIHdoaXNrZXIgKGZyb20gbG93ZXIgd2hpc2tlciBlbmQgdG8gUTEpXG5QbG90LmxpbmsoYm94X3N1bW1hcnksIHtcbiAgeDE6IGQgPT4gZC54MSxcbiAgeDI6IGQgPT4gZC5xMSxcbiAgeTE6IDAsXG4gIHkyOiAwLFxuICBzdHJva2U6IFwiIzQxNDA0MlwiLFxuICBzdHJva2VXaWR0aDogMS41XG59KSxcbi8vIFVwcGVyIHdoaXNrZXIgKGZyb20gUTMgdG8gdXBwZXIgd2hpc2tlciBlbmQpXG5QbG90LmxpbmsoYm94X3N1bW1hcnksIHtcbiAgeDE6IGQgPT4gZC5xMyxcbiAgeDI6IGQgPT4gZC54MixcbiAgeTE6IDAsXG4gIHkyOiAwLFxuICBzdHJva2U6IFwiIzQxNDA0MlwiLFxuICBzdHJva2VXaWR0aDogMS41XG59KVxuICBdXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC04IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiaHRtbGA8ZGl2IHN0eWxlPVwiZm9udC1zaXplOiAwLjllbTsgY29sb3I6ICM1NTU7IG1hcmdpbi10b3A6IDAuNWVtOyBcbiAgcGFkZGluZzogMC43NWVtIDFlbTsgYmFja2dyb3VuZDogI2Y5ZjlmOTsgYm9yZGVyLWxlZnQ6IDNweCBzb2xpZCAjNDE0MDQyO1wiPlxuICAke2JveF9hbm5vdGF0aW9ufVxuPC9kaXY+YFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdkYXRhc2V0JykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2Jpbl93aWR0aCcpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdib3hfZGF0YXNldCcpIn1dfQ==
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../research";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id = "quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <div class='footer-contents'>© 2026 Rose Megirian</div>  
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+</body>
+
+</html>

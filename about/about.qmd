@@ -1,0 +1,18 @@
+---
+title: "Rose Megirian"
+subtitle: "Designer | Behavioural Scientist | Data Scientist"
+image: images/21_proj_good_measure_3200-9.jpg
+about:
+  template: marquee
+toc: false
+---
+
+# Education
+
+## Degrees
+
+## Diplomas
+
+## short courses
+
+# Experience

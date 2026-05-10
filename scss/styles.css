@@ -1,3 +1,91 @@
+/* =========================
+   Global small tweak
+========================= */
+
 .card-file-modified:before {
     content: "Updated: ";
+}
+
+/* smooth scrolling behaviour */
+html {
+    scroll-behavior: smooth;
+}
+
+.navbar {
+    background-color: transparent;
+}
+
+.navbar-title {
+    font-size: 1.5em;
+}
+
+/* new masonry grid */
+
+/* =========================
+   MASONRY GRID
+========================= */
+
+.grid {
+    width: 100%;
+}
+
+/* responsive column sizing */
+.grid-item {
+    width: calc(33.333% - 16px);
+    margin-bottom: 24px;
+}
+
+/* images */
+.grid-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* tablet */
+@media (max-width: 1000px) {
+    .grid-item {
+        width: calc(50% - 12px);
+    }
+}
+
+/* mobile */
+@media (max-width: 600px) {
+    .grid-item {
+        width: 100%;
+    }
+}
+
+/* =========================
+   MASONRY GRID 
+========================= */
+
+.masonry {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.masonry img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =========================
+   FORCE FULL WIDTH (CRITICAL)
+========================= */
+
+.home .quarto-listing,
+.home .masonry {
+    width: 100%;
+    max-width: none;
+}
+
+.home #quarto-content,
+.home .page-columns,
+.home main.content {
+    max-width: none !important;
+    width: 100% !important;
 }
