@@ -9,12 +9,8 @@ website:
   navbar: 
     title: "R___Studio"
     right:
-      - href: creative/index.qmd
-        text: "Creative"
-      - href: research/index.qmd
-        text: "Research"
-      - href: about/about.qmd
-        text: "About"
+      - href: projects/index.qmd
+        text: "Projects"
       - href: blog/index.qmd
         text: "Blog"
     tools:
@@ -22,7 +18,36 @@ website:
         href: "https://www.linkedin.com/in/rosemegirian/"
       - icon: "github"
         href: "https://github.com/rmegirian"
-      
+        
+  sidebar:
+    - id: projects-sidebar
+      style: "docked"
+      collapse-level: 1
+      contents:
+        - href: projects/index.qmd
+        
+        - section: "Training Materials"
+          contents:
+            
+            - section: "Field Trials & Structured Experiments"
+              href: projects/training_materials/field_trials/index.qmd
+              contents:
+                - text: "Interpreting Outputs"
+                  href: projects/training_materials/field_trials/interpreting_outputs/index.qmd
+                  
+            - section: "Surveys & Questionnaires"
+              href: projects/training_materials/surveys/index.qmd
+        
+        - section: "EIGPD"
+          contents:
+          
+            - section: "Data Standards"
+              href: projects/EIGPD/data_standards/index.qmd
+              contents:
+              - text: "FAIR Data App"
+                href: projects/EIGPD/data_standards/FAIR_data_app/index.qmd
+                
+                
         
   page-footer: 
     center: "© 2026 Rose Megirian"

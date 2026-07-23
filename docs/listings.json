@@ -1,9 +1,7 @@
 [
   {
     "listing": "/research/index.html",
-    "items": [
-      "/research/descriptive_and_exploratory_outputs.html"
-    ]
+    "items": []
   },
   {
     "listing": "/blog/index.html",
@@ -11,6 +9,17 @@
       "/blog/behaviourally_informed_survey_design/behaviourall_infomed_survey_design.html",
       "/blog/descriptive_and_exploratory_outputs/descriptive_and_exploratory_outputs.html",
       "/blog/survey_link_generation/survey_link_generation.html"
+    ]
+  },
+  {
+    "listing": "/projects/index.html",
+    "items": []
+  },
+  {
+    "listing": "/projects/training_materials/field_trials/index.html",
+    "items": [
+      "/projects/training_materials/field_trials/interpreting_outputs/index.html",
+      "/projects/training_materials/field_trials/interpreting_outputs/descriptive_and_exploratory_outputs.html"
     ]
   }
 ]

@@ -1,0 +1,15 @@
+---
+title: "Projects"
+subtitle: ...
+page-layout: article
+anchor-sections: false
+search: false
+listing:
+  id: project-links
+  template: ../ejs/links.ejs
+  contents: projects.yml
+---
+
+::: {#project-links .column-screen-inset-right style="max-width: 850px;"}
+:::
+

@@ -1,0 +1,16 @@
+\contentsline {section}{\nonumberline Plots and Figures}{2}{section*.5}%
+\contentsline {subsection}{\nonumberline Histograms}{2}{subsection*.6}%
+\contentsline {subsubsection}{\nonumberline Reading histograms}{5}{subsubsection*.7}%
+\contentsline {paragraph}{\nonumberline Normal example}{5}{paragraph*.8}%
+\contentsline {paragraph}{\nonumberline Skewed example}{6}{paragraph*.10}%
+\contentsline {paragraph}{\nonumberline Bimodal example}{6}{paragraph*.12}%
+\contentsline {subsection}{\nonumberline Boxplots}{6}{subsection*.14}%
+\contentsline {subsubsection}{\nonumberline Reading boxplots}{9}{subsubsection*.16}%
+\contentsline {subsubsection}{\nonumberline Comparing groups}{13}{subsubsection*.17}%
+\contentsline {subsection}{\nonumberline Scatter Plots}{13}{subsection*.19}%
+\contentsline {subsubsection}{\nonumberline Reading scatter plots}{14}{subsubsection*.23}%
+\contentsline {subsection}{\nonumberline Numerical Summaries}{16}{subsection*.25}%
+\contentsline {subsubsection}{\nonumberline Means}{16}{subsubsection*.26}%
+\contentsline {subsubsection}{\nonumberline Standard Deviations}{16}{subsubsection*.27}%
+\contentsline {subsubsection}{\nonumberline Frequency Tables}{16}{subsubsection*.28}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

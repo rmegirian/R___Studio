@@ -1,0 +1,38 @@
+---
+title: "Field Trials & Structured Experiments"
+toc: false
+listing: 
+  - id: field-trials-sections
+    type: grid
+    grid-columns: 4
+    grid-item-align: center
+    contents: 
+      - "interpreting_outputs/index.qmd"
+      
+    fields: [image,title]
+    sort: "order"
+
+  - id: field-trials-table
+    type: table
+    contents: 
+      - "interpreting_outputs/*.qmd"
+      - "!interpreting_outputs/index.qmd"
+      
+    fields: [title, description]
+    sort-ui: false
+    filter-ui: false
+    categories: false
+format: 
+  html: 
+    css: styles.css
+---
+
+This section contains ...
+
+::: {#field-trials-sections}
+:::
+
+::: {#field-trials-table}
+:::
+---
+

@@ -1,0 +1,17 @@
+  
+- title: Training Materials
+  subtitle: test
+  links:
+    - text: Field Trials & Structured Experiments
+      href: training_materials/field_trials/index.qmd
+    - text: Surveys & Questionnaires
+      href: training_materials/surveys/index.qmd
+
+- title: Economic Impacts in Grains Pests & Diseases
+  subtitle: ..
+  links:
+    - text: Data Standards
+      href: EIGPD/data_standards/index.qmd
+    - text: Expert Knowledge Elicitation
+      href: EIGPD/expert_knowledge_elicitation/index.qmd
+    

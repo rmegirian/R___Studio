@@ -1,14 +1,11 @@
 ---
-title: "Interpreting Descriptive and Exploratory Outputs: Plots and Summaries."
+title: "Interpreting Descriptive and Exploratory Analysis Outputs"
 description: "An introduction to reading and interpreting common descriptive plots and numerical summaries, covering what they represent, what different patterns indicate, and when each is appropriate."
 author: "Rose Megirian"
-categories: [Data Analysis]
+categories: [Data Analysis, Collaborator Resources, Interpreting Outputs]
 bibliography: references.bib
 image: images/plot.png
 toc: true
-format:
-  html: default
-  pdf: default
 ---
 
 ```{r}
